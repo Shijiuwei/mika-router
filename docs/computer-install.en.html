@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer CLI / Skill: install, update and remove — mika-router</title>
+<meta property="og:description" content="The starting point for using Mika from a computer is Use Mika from a computer: pick CLI + Skill or MCP there, and USB or Wi-Fi / VPN. Thi...">
+<meta property="og:type" content="website">
+<meta name="description" content="The starting point for using Mika from a computer is Use Mika from a computer: pick CLI + Skill or MCP there, and USB or Wi-Fi / VPN. Thi...">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="Computer CLI / Skill: install, update and remove — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/computer-install.en.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "The starting point for using Mika from a computer is Use Mika from a computer: pick CLI + Skill or MCP there, and USB or Wi-Fi / VPN. Thi...",
+  "headline": "Computer CLI / Skill: install, update and remove — mika-router",
+  "inLanguage": "en-US",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "Computer CLI / Skill: install, update and remove — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/computer-install.en.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/backup-export-import.html">Backup &amp; data (Settings &gt; Backup &amp; data)</a>
+<a href="../docs/cli.en.html">Computer CLI and Agent Skill</a>
+<a href="../docs/cli.html">电脑端 CLI 与 Agent Skill</a>
+<a href="../docs/computer-install.en.html" class="doc-1d6-active">Computer CLI / Skill: install, update and remove</a>
+<a href="../docs/computer-install.html">电脑端 CLI / Skill：安装、升级和卸载</a>
+<a href="../docs/computer.en.html">Use Mika from a computer</a>
+<a href="../docs/computer.html">从电脑使用 Mika</a>
+<a href="../docs/disclaimer.en.html">Disclaimer, data and privacy</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>Computer CLI / Skill: install, update and remove</h1>
+<p><a href="computer-install.md">简体中文</a> · <a href="cli.en.md">Connection and task commands</a> · <a href="mcp.en.md">MCP configuration</a></p>
+<p>The starting point for using Mika from a computer is <a href="computer.en.md">Use Mika from a computer</a>: pick CLI + Skill or MCP there, and USB or Wi-Fi / VPN. This page only covers installing, updating and removing the CLI and the Skill; if you use an MCP client, skip it and follow the <a href="mcp.en.md">MCP guide</a>.</p>
+<p>Agents wanting a fixed shortest path: see the <a href="agent-quickstart.en.md">agent quick path</a>.</p>
+<h2>Before you start</h2>
+<ul>
+<li>To let a computer agent that can run commands and supports Skills use Mika, install the <a href="#skill-install">Skill</a>. It includes its own CLI script, so no separate CLI install is needed.</li>
+<li>To submit tasks from a terminal or script, install the <a href="#cli-install">CLI</a>, which gives you the <code>mika</code> command.</li>
+</ul>
+<p>On the phone: install the APK (<a href="https://github.com/wangzan101/Mika/releases/latest">Releases</a>), open Mika once and add a model. <strong>If Mika only needs to chat, browse the web and work with files, you can skip accessibility and the phone helper, and Android 11 works</strong>; only phone app control needs the phone-control setup in the <a href="setup-guide.en.md">setup guide</a> (Android 12+). Installing or updating the computer tools does not install or update the APK on the phone.</p>
+<p>Below, <code>&lt;tag&gt;</code> means the version tag of the <a href="https://github.com/wangzan101/Mika/releases/latest">latest release</a> (the <code>v0.1.x</code> in its title). Keep the computer tools and the phone APK on the same version where you can.</p>
+<h2>CLI: install</h2>
+<p>Requires Python 3.10+, Git and pipx; ADB connections also need Android platform-tools. Install:</p>
+<pre><code class="language-bash">pipx install 'git+https://github.com/wangzan101/Mika.git@&lt;tag&gt;#subdirectory=tools/mika'
+mika --version
+</code></pre>
+<p>The pipx package is <code>mika-phone-cli</code> and the command is <code>mika</code>. The CLI has its own version number, separate from the APK's. With a repository checkout you can also run <code>pipx install ./tools/mika</code> from the repository root, or skip installing and run <code>python3 tools/mika/scripts/mika_cli.py</code> directly (<code>py -3</code> on Windows).</p>
+<h2>CLI: update, roll back and remove</h2>
+<p>To update, use the new <code>&lt;tag&gt;</code>; to roll back, use the previous one; <code>--force</code> replaces the installed copy:</p>
+<pre><code class="language-bash">pipx install --force 'git+https://github.com/wangzan101/Mika.git@&lt;tag&gt;#subdirectory=tools/mika'
+</code></pre>
+<p><code>pipx upgrade</code> does not move to another tag; use the command above to change versions. To remove:</p>
+<pre><code class="language-bash">pipx uninstall mika-phone-cli
+</code></pre>
+<h2>Skill: install</h2>
+<p>The Skill is the repository's <code>tools/mika</code> folder: <code>SKILL.md</code> tells the agent how to use it, and <code>scripts/mika_cli.py</code> is the bundled CLI, which needs only Python 3.10+ (plus platform-tools for ADB connections).</p>
+<ol>
+<li>
+<p>From the <a href="https://github.com/wangzan101/Mika/releases/latest">latest release</a>, download <strong>Source code (zip)</strong> and extract it.</p>
+</li>
+<li>
+<p>Copy the <strong>whole</strong> <code>tools/mika</code> folder into your agent's skills directory (see that agent's own documentation for where it is). The result should be <code>&lt;skills-directory&gt;/mika/SKILL.md</code>, without an extra nested <code>mika</code> folder.</p>
+</li>
+<li>
+<p>Check that the bundled script runs:</p>
+<pre><code class="language-bash">python3 &lt;skills-directory&gt;/mika/scripts/mika_cli.py --version   # use py -3 instead of python3 on Windows
+</code></pre>
+</li>
+<li>
+<p>Start a new agent session and confirm it can see a Skill named <code>mika</code>.</p>
+</li>
+</ol>
+<p>If a <code>mika</code> command is already installed on the computer, the Skill uses it first. Updating the Skill does not update that CLI; maintain each separately.</p>
+<h2>Skill: update, roll back and remove</h2>
+<ul>
+<li><strong>Update or roll back</strong>: move the old <code>mika</code> folder out of the skills directory as a backup, then copy the whole <code>tools/mika</code> folder of the target version. Do not copy over the old folder.</li>
+<li><strong>Remove</strong>: delete only the <code>mika</code> folder in the skills directory.</li>
+</ul>
+<p>Start a new agent session after any change.</p>
+<h2>After installing: check the connection</h2>
+<p>With only the Skill installed, replace <code>mika</code> below with <code>python3 &lt;skills-directory&gt;/mika/scripts/mika_cli.py</code> (<code>py -3</code> on Windows).</p>
+<p>Over USB or connected wireless ADB:</p>
+<pre><code class="language-bash">mika devices --json
+mika connect --device SERIAL --json
+mika doctor --device SERIAL --json
+</code></pre>
+<p>Directly over Wi-Fi / a private network (first turn on network access in Settings › Connect a computer on the phone):</p>
+<pre><code class="language-bash">mika --url http://PHONE:8765 --token-file /path/to/private-token-file doctor --json
+</code></pre>
+<p><strong>A successful <code>connect</code> or <code>doctor</code> does not mean a task gets done.</strong> They only show that the API is reachable and device state is readable; <code>doctor</code> reports the model configuration as unverified, and neither shows that the agent has loaded the Skill. To verify a real task, submit a simple one with <code>mika task run</code>, then use <code>mika task wait</code> until it reports <code>done</code> and check the result; see <a href="cli.en.md#tasks">Task commands</a>.</p>
+<table><thead><tr><th>Symptom</th><th>What to do</th></tr></thead><tbody>
+<tr><td><code>incompatible_api</code></td><td>The APK on the phone is too old. The message names the phone version and the missing capability: update the APK, or rerun without the gated option (for example <code>--request-id</code>; the task still runs, only recovery after a lost receipt is unavailable).</td></tr>
+<tr><td><code>stale_connection</code></td><td>The phone has rebooted; run <code>connect</code> again.</td></tr>
+<tr><td><code>device_selection</code></td><td>More than one phone is online; find the serial with <code>mika devices</code> and add <code>--device SERIAL</code>.</td></tr>
+<tr><td><code>connection_info</code></td><td>Mika's connection information could not be read (the phone is locked, Mika hasn't been opened yet, and so on): unlock the phone, open Mika once, then run <code>connect</code> again.</td></tr>
+<tr><td><code>adb</code> / <code>adb_unavailable</code></td><td>Make sure adb is on PATH and the phone shows as <code>device</code> in <code>adb devices</code>, open Mika once on the phone, then run <code>connect</code> again.</td></tr>
+<tr><td>The agent does not see the Skill</td><td>Check for an extra nested folder and that <code>scripts/</code> was copied too, then start a new session.</td></tr>
+</tbody></table>
+<p>Removing the computer tools does not delete phone data or turn off computer access on the phone. To stop remote access, turn off the relevant switch in Settings › Connect a computer on the phone.</p>
+<h2>Related References</h2>
+<ul>
+<li><a href="https://www.ai-hao123.com">异步路由分发机制 Reference</a></li>
+<li><a href="https://view.ai-hao123.com">RESTful微服务治理 Reference</a></li>
+<li><a href="https://doc.ai-hao123.com/sitemap.xml">中间件管道调用契约 Reference</a></li>
+</ul>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="cli.html">&larr; 电脑端 CLI 与 Agent Skill</a>
+<a href="index.html">Catalog (34)</a>
+<a href="computer-install.html">电脑端 CLI / Skill：安装、升级和卸载 &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Related Engineering Portals</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Curated upstream specifications and reference portals aligned with <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://view.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - view.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">view.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://doc.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">向量检索与嵌入索引 - doc.ai-hao123.com</span><span class="doc-1d6-refurl">doc.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://info.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">异步路由分发机制 - info.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">info.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://news.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - news.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">news.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://tech.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - tech.ai-hao123.com</span><span class="doc-1d6-refurl">tech.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://read.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">向量检索与嵌入索引 - read.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">read.ai-hao123.com/sitemap.xml</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

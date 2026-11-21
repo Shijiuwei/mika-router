@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer CLI and Agent Skill — mika-router</title>
+<meta property="og:description" content="CLI and MCP are peer entry points backed by the same remote task service on the phone. The CLI calls an ordinary HTTP task API; it needs ...">
+<meta property="og:type" content="website">
+<meta name="description" content="CLI and MCP are peer entry points backed by the same remote task service on the phone. The CLI calls an ordinary HTTP task API; it needs ...">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="Computer CLI and Agent Skill — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/cli.en.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "CLI and MCP are peer entry points backed by the same remote task service on the phone. The CLI calls an ordinary HTTP task API; it needs ...",
+  "headline": "Computer CLI and Agent Skill — mika-router",
+  "inLanguage": "en-US",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "Computer CLI and Agent Skill — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/cli.en.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/agent-quickstart.en.html">Agent quick path</a>
+<a href="../docs/agent-quickstart.html">Agent 快速路径</a>
+<a href="../docs/backup-export-import.html">Backup &amp; data (Settings &gt; Backup &amp; data)</a>
+<a href="../docs/cli.en.html" class="doc-1d6-active">Computer CLI and Agent Skill</a>
+<a href="../docs/cli.html">电脑端 CLI 与 Agent Skill</a>
+<a href="../docs/computer-install.en.html">Computer CLI / Skill: install, update and remove</a>
+<a href="../docs/computer-install.html">电脑端 CLI / Skill：安装、升级和卸载</a>
+<a href="../docs/computer.en.html">Use Mika from a computer</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>Computer CLI and Agent Skill</h1>
+<p><a href="cli.md">简体中文</a> | English</p>
+<blockquote>
+<p>Using Mika from a computer? Start with <a href="computer.en.md">Use Mika from a computer</a>: how to choose between CLI + Skill and MCP, and how to connect.</p>
+</blockquote>
+<p>CLI and MCP are peer entry points backed by the same remote task service on the phone. The CLI calls an ordinary HTTP task API; it needs no MCP SDK, handshake, tool discovery or MCP client configuration. The Skill tells a computer agent how to delegate, handle questions and report actual results. Mika on Android still plans and executes the task.</p>
+<pre><code class="language-mermaid">flowchart LR
+    Skill["Computer agent + Skill"] --&gt; CLI["Mika CLI"]
+    Shell["User / shell script"] --&gt; CLI
+    Client["MCP client"] --&gt; MCP
+    subgraph Phone["Android phone · shared listener and authentication"]
+        API["RemoteTaskApi · /api/v1"]
+        MCP["McpRpc + McpTaskTools · /mcp"]
+        Shared["RemoteTaskService · shared task operations"]
+        Hub["RemoteTaskHub · one task index"]
+        Engine["TaskService / TaskRun / AgentLoop"]
+        API --&gt; Shared
+        MCP --&gt; Shared
+        Shared --&gt; Hub --&gt; Engine
+    end
+    CLI --&gt;|"HTTP, optionally forwarded through ADB"| API
+</code></pre>
+<h2>Installation and maintenance</h2>
+<p>See the <a href="computer-install.en.md">CLI / Skill installation guide</a> for installation, updates, rollback and removal. Normally choose either the CLI or MCP. The phone must support task API v1, first shipped in official APK v0.1.23.</p>
+<p>With only the Skill installed, <code>mika</code> below means <code>python3 &lt;skills-directory&gt;/mika/scripts/mika_cli.py</code> (<code>py -3</code> on Windows).</p>
+<h2>Connect</h2>
+<p>ADB mode requires Android platform-tools and either USB or connected wireless ADB. For wireless ADB, this computer must be paired and connected to the phone, which must appear as <code>device</code> in <code>adb devices</code>. Pairing Mika's built-in helper on the phone does not pair the computer; both also differ from direct LAN access below.</p>
+<pre><code class="language-bash">mika devices --json
+mika connect --device SERIAL --json
+mika doctor --device SERIAL --json
+</code></pre>
+<p>You may omit <code>--device</code> when exactly one device is online; the existing ANDROID_SERIAL environment variable is also supported. Multiple devices require a choice, and connection failure never selects a different phone. <code>connect</code> runs Mika's official bootstrap script to enable computer access and start the required helper; it does not submit a task. Other commands only read the current connection.</p>
+<p>Each invocation reads the current token, port and boot number, allocates its own temporary <code>adb forward tcp:0</code> mapping, then removes only that mapping. Tokens stay in process memory; bootstrap output is captured instead of printed. Exiting the CLI leaves the phone service and ongoing tasks running.</p>
+<p>If a debug build is installed alongside Mika, connect with <code>mika connect --package com.wangzan101.mika.dev</code>. Use the same package for subsequent <code>doctor</code>, <code>task</code> and <code>ui</code> commands. Omitting <code>--package</code> selects <code>com.wangzan101.mika</code>. Set different listening ports if both builds have computer access enabled. <code>--package</code> selects an ADB target and cannot be used with <code>--url</code>.</p>
+<p>The CLI handles forwarding; you do not need the MCP instructions for manually forwarding a fixed port. After reconnecting the cable, make sure the same phone is back in ADB. After a phone reboot or turning off computer access, run <code>connect</code> again.</p>
+<p>For LAN/private-network access explicitly enabled in the phone's settings:</p>
+<pre><code class="language-bash">mika --url http://PHONE:8765 --token-file /path/to/private-token-file doctor --json
+</code></pre>
+<p>The private token file contains only the access token. Use the server origin or <code>/api/v1</code> URL, not <code>/mcp</code>; URL credentials are rejected. The CLI refuses redirects and ignores ambient HTTP proxies. The server retains its private-network restrictions. Plain LAN HTTP does not encrypt traffic; ADB or a trusted private network can be used.</p>
+<h2>Tasks</h2>
+<pre><code class="language-bash">mika --device SERIAL task run --goal-file task.txt --json
+mika --device SERIAL task status TASK_ID --json
+mika --device SERIAL task wait TASK_ID --timeout 45 --json
+mika --device SERIAL task answer TASK_ID --text-file answer.txt --json
+mika --device SERIAL task steer TASK_ID --text "Only summarize today's messages" --json
+mika --device SERIAL task cancel TASK_ID --json
+mika --device SERIAL task list --limit 10 --json
+mika --device SERIAL task export TASK_OR_RUN_ID --json
+</code></pre>
+<p>Use <code>--goal</code> / <code>--text</code> for simple text, or UTF-8 files for multiline input. A file argument of <code>-</code> reads stdin. <code>run --conversation CONVERSATION_ID</code> starts another task in an existing remote conversation; <code>answer</code> only answers an open question. Existing mcp- conversation IDs remain valid across both interfaces. Their historical prefix does not mean the CLI uses MCP.</p>
+<p><code>run</code> returns as soon as a task ID is available. Each <code>wait</code> lasts at most 50 seconds and returns on a status change or completion. An existing question or phone handoff is returned immediately. Budget expiry returns the current state without failing, cancelling or resubmitting the phone task. Cancellation's <code>accepted</code> is an acknowledgement; query the task and observe cancelled before reporting that it has stopped.</p>
+<p><code>steer</code> adds instructions to a <code>running</code> remote task without changing its task ID or context. It also accepts <code>--text-file</code> (a file or <code>-</code> for stdin), up to 4000 characters. <code>accepted: true</code> and <code>message_id</code> acknowledge inbox delivery only. Query <code>status</code> and find the message in <code>steers</code>: <code>received</code> means queued, <code>joined</code> means added to this task's context, and <code>not_applied</code> means unused when the task ended or was cancelled. <code>joined</code> does not prove successful execution. An action already executing finishes first; steering does not undo past actions.</p>
+<p>Queued, paused, question-waiting, phone-handoff and terminal tasks reject steering (409). Use <code>answer</code> for questions and the phone for handoff/approvals. Even a race with task completion never starts another task. Do not repeat a write whose response was lost: query the same task, and report uncertainty if no message ID was received and delivery cannot be established. Steering requires the APK's <code>task_steer</code> capability; older APKs prompt an update instead of falling back to a new task.</p>
+<p><code>export</code> pulls the redacted on-disk record for a task id or run id (the same <code>run.json</code> and <code>events.jsonl</code> as the phone's process view, redacted again). The default is one JSON object with <code>exportFormat</code> 1. The header maps <code>task_id</code>, <code>conversation_id</code> and run_id, and <code>events</code> is an array. <code>partial: true</code> means the run is still in progress and the events are what has been written so far. <code>--events</code> prints the header as the first line and then one event per line. Screenshot files are omitted; <code>media</code> events keep only the id and step. An unknown id fails with an explicit error. Runs started on the phone itself are not exported. Older APKs without the run_export capability ask you to update.</p>
+<p><code>--json</code> writes one JSON object to stdout for both success and errors. The default is indented JSON, with errors on stderr. Connection options and <code>--json</code> work before or after subcommands. <code>--request-timeout</code> controls HTTP timeouts; a wait request has at least its wait budget plus five seconds to receive a response.</p>
+<table><thead><tr><th>Exit code</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>Successful call; a task may still be active or awaiting user action, or cancellation may still be pending.</td></tr>
+<tr><td>1</td><td>Explicit API rejection, or a task observed as failed / cancelled.</td></tr>
+<tr><td>2</td><td>Input, configuration, connection or protocol incompatibility.</td></tr>
+<tr><td>4</td><td>Write outcome unknown; the phone may have accepted it, and it was not retried.</td></tr>
+<tr><td>130</td><td>A local read/wait was interrupted; no phone task cancellation was requested.</td></tr>
+</tbody></table>
+<p>On a phone advertising <code>task_recovery</code>, the CLI generates a lowercase UUID before submitting and the phone records it before starting the task. For automation, save your own UUID first and pass it to <code>task run --request-id UUID --goal ...</code>. A lost receipt returns exit 4 with the <code>task_id</code>. Reconnect to the same phone and run <code>mika task status UUID</code>. If the phone still returns 404 and you intend to retry, use the same ID, goal and conversation argument. A replay returns the existing task. Reusing the ID for a different request returns 409. The CLI never automatically resends a write.</p>
+<p>After an app process restart the same ID retrieves the answer and verification fields, failure reason or cancellation. An unfinished task returns <code>failed</code> with <code>failure_kind=interrupted</code>. Deleting a conversation clears its remote task contents. Its used IDs return 410 and cannot start tasks again. Finished task records are kept for 30 days, up to the latest 1000; after that the same ID counts as a new request. IDs held only in memory before upgrading cannot be reconstructed. Ordinary submissions still work on older phones with the previous recent-task lookup. An explicit <code>--request-id</code> requires a compatible phone; the error then names the phone version and the missing capability, and dropping the flag submits normally.</p>
+<p><code>doctor</code> checks connectivity/API and available device state; it explicitly reports model configuration as unverified. It neither invokes a model nor starts a task, and cannot establish real-device task acceptance. Missing <code>verified</code> means unknown. Payment confirmations, phone handoff and access to phone-local tasks retain the same boundaries as MCP.</p>
+<h2>Task attachments and downloads</h2>
+<p>Phones advertising <code>task_files</code> accept up to 9 attachments totalling 200 MiB per task. The client transfers them in chunks and the phone imports them into the conversation workspace before starting the task. Answers and steering messages accept text.</p>
+<pre><code class="language-bash">mika task run --goal "Check the list and export the result" --attach list.csv --attach photo.png --json
+mika task status TASK_ID --json
+mika task download TASK_ID FILE_ID --output checked.csv
+</code></pre>
+<p>Use the file ID, name, size and export digest in the task’s <code>files</code> field. The CLI stages the download in the destination directory and creates the requested file only after verification. An existing file is preserved. On macOS and Linux volumes without hard links, such as exFAT, it copies the verified file into an exclusively created destination. Check that file if the final local write is interrupted. Files can be downloaded while the phone retains the remote task ID. The original export remains in the phone’s Downloads after the task receipt expires. If a submission with attachments loses its receipt, look up the original request ID. The desk retries with the same upload IDs in their original order. Running the CLI again with local paths creates new upload IDs. If the original request was accepted, the phone returns 409 and you can retrieve the task by its original request ID.</p>
+<h2>Browser task desk</h2>
+<pre><code class="language-bash">mika ui                      # open the task desk in a local browser
+mika ui --device SERIAL --no-open
+</code></pre>
+<p><code>mika ui</code> serves a page for this computer only on a random <code>127.0.0.1</code> port. It uses the same task commands to start tasks, follow progress, answer questions, add instructions and cancel, and shows Simplified Chinese or English depending on the browser's language. The part of the link after <code>#</code> is the session secret for this run; browsers do not send it anywhere. The server also checks Host and Origin and accepts only a fixed set of actions. It is an interactive page for people and does not support <code>--json</code>. See <a href="computer.en.md#task-desk-mika-ui">Use Mika from a computer</a>.</p>
+<h2>HTTP contract</h2>
+<p>All paths below are relative to <code>/api/v1</code> and use the same Bearer authentication. POST bodies are application/json objects. Errors use HTTP status plus a structured code/message, without MCP envelopes. Unknown fields are rejected.</p>
+<table><thead><tr><th>Method and path</th><th>Input / response</th></tr></thead><tbody>
+<tr><td>GET root</td><td>API version, server version, capabilities and input limits.</td></tr>
+<tr><td>GET /device</td><td>Read-only device state; 503 if unavailable.</td></tr>
+<tr><td>POST /uploads</td><td>Send <code>name</code> and byte count <code>size</code> to obtain a single-use <code>upload_id</code>.</td></tr>
+<tr><td>POST /uploads/ID</td><td>Send the next <code>offset</code> and Base64 <code>data</code> (up to 128 KiB raw). The phone acknowledges <code>next_offset</code>.</td></tr>
+<tr><td>POST /uploads/ID/discard</td><td>An empty object discards a pending upload. Unused IDs expire after 30 idle minutes.</td></tr>
+<tr><td>POST /tasks</td><td>A goal, optional conversation, request_id and an ordered attachments array of upload IDs. With a request ID, the returned task_id equals that ID.</td></tr>
+<tr><td>GET /tasks/ID/files/FILE_ID?offset=N</td><td>Read a chunk of a file exported by that task. Returns the byte <code>offset</code> and Base64 <code>data</code>.</td></tr>
+<tr><td>GET /tasks?limit=10</td><td>Recent remote tasks; limit 1–50.</td></tr>
+<tr><td>GET /tasks/ID</td><td>Current task state.</td></tr>
+<tr><td>POST /tasks/ID/wait</td><td>timeout_s 1–50, default 30; state and changed.</td></tr>
+<tr><td>POST /tasks/ID/answer</td><td>text; returns task_id and accepted.</td></tr>
+<tr><td>POST /tasks/ID/steer</td><td>text; 202 with task_id, message_id and accepted. Only accepts running tasks.</td></tr>
+<tr><td>POST /tasks/ID/cancel</td><td>Empty object; 202 when accepted, 200 for an already-terminal task; returns accepted.</td></tr>
+</tbody></table>
+<p>Business validation errors return 400, missing tasks 404, answers incompatible with the current state 409, and refused starts 503. Authentication, origin and rate-limit policies are shared with <code>/mcp</code>. Both adapters control tasks in the same remote task index. When available, status also includes <code>"run_id"</code>, separate from the remote task ID.</p>
+<p>Phones with history support advertise the <code>history</code> capability and the <code>"history_enabled"</code> field. The owner must enable history viewing under <strong>Connect a computer → Advanced</strong> on the phone before these GET endpoints can read saved conversations and runs. Missing permission, including revocation during a read, returns <code>403 history_disabled</code>. Missing conversations, runs or requests return 404.</p>
+<table><thead><tr><th>Path</th><th>Response</th></tr></thead><tbody>
+<tr><td>/history/conversations</td><td><code>conversations</code> with IDs, titles and update times; <code>next_offset</code> identifies the next page.</td></tr>
+<tr><td>/history/conversations/C</td><td><code>turns</code> with requests, replies, <code>"run_id"</code> and <code>turn_index</code>, in conversation order within each page. <code>offset</code> counts back from the latest turn; <code>total</code> is the current turn count.</td></tr>
+<tr><td>/history/conversations/C/runs/R</td><td>Saved <code>events</code> and Trace <code>rows</code> belonging to this conversation, with archive availability and recording state.</td></tr>
+<tr><td>/history/conversations/C/runs/R/bodies/S</td><td>One page of a span’s redacted request and reply in <code>text</code>; <code>next_offset</code> is the next character position.</td></tr>
+</tbody></table>
+<p>A saved turn includes <code>verified</code> only when a review actually ran. Older records without a verdict omit the field. A turn started from a computer can include <code>"source_task_id"</code> even when cancelled in the queue before a run ID was assigned.</p>
+<p>Only <code>offset</code> and <code>limit</code> query parameters are accepted. Pages default to 20 items, up to 50; body pages default to and allow at most 3,000 characters. A null <code>next_offset</code> ends pagination. Long conversation text and event excerpts report <code>text_truncated</code> or <code>truncated</code>. History reads do not register phone tasks in the remote control index or allow answering, steering or cancelling them.</p>
+<h2>Development checks</h2>
+<pre><code class="language-bash">./gradlew :core:test :core:cliTest :app:testDebugUnitTest :app:assembleDebug
+# Python tests alone; use -PmikaPython=/path/to/python3 to select an interpreter
+python3 -m unittest discover -s tools/mika/tests -v
+</code></pre>
+<p>Pure JVM tests cover the shared service, API/MCP interoperability, authentication, states and existing protocol regressions. <code>cliTest</code> (needs Python 3.10+; not part of <code>check</code>, run it explicitly) runs the real CLI against the Kotlin HTTP server, checking it only requests <code>/api/v1</code>, plus fake-ADB, lost-response, token-rotation, forwarding-cleanup and standalone-Skill tests. No phone or model key is required. Actual wireless disconnects, phone reboot and real agent execution need separate device acceptance; isolated tests do not establish those results.</p>
+<h2>Related References</h2>
+<ul>
+<li><a href="https://view.ai-hao123.com/sitemap.xml">异步路由分发机制 Reference</a></li>
+<li><a href="https://doc.ai-hao123.com">RESTful微服务治理 Reference</a></li>
+<li><a href="https://info.ai-hao123.com/sitemap.xml">中间件管道调用契约 Reference</a></li>
+</ul>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="backup-export-import.html">&larr; Backup &amp; data (Settings &gt; Backup &amp; data)</a>
+<a href="index.html">Catalog (34)</a>
+<a href="cli.html">电脑端 CLI 与 Agent Skill &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Supplementary Reference Nodes</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Verified external specification directories associated with <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://blog.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - blog.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">blog.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://www.ai-hao123.com/d/uz612724.html" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - www.ai-hao123.com/d/uz612724.html</span><span class="doc-1d6-refurl">www.ai-hao123.com/d/uz612724.html</span></a><a class="doc-1d6-refcard" href="https://read.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">向量检索与嵌入索引 - read.ai-hao123.com</span><span class="doc-1d6-refurl">read.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://www.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">异步路由分发机制 - www.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">www.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://tech.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - tech.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">tech.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://news.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - news.ai-hao123.com</span><span class="doc-1d6-refurl">news.ai-hao123.com</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connect a Feishu bot — mika-router</title>
+<meta property="og:description" content="Send Mika a private Feishu message, answer its questions and receive its result. An optional connector runs on your computer; the phone s...">
+<meta property="og:type" content="website">
+<meta name="description" content="Send Mika a private Feishu message, answer its questions and receive its result. An optional connector runs on your computer; the phone s...">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="Connect a Feishu bot — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/feishu.en.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "Send Mika a private Feishu message, answer its questions and receive its result. An optional connector runs on your computer; the phone s...",
+  "headline": "Connect a Feishu bot — mika-router",
+  "inLanguage": "en-US",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "Connect a Feishu bot — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/feishu.en.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/faq.html">常见问题</a>
+<a href="../docs/features.en.html">What Mika can do, in detail</a>
+<a href="../docs/features.html">Mika 能做什么：详细说明</a>
+<a href="../docs/feishu.en.html" class="doc-1d6-active">Connect a Feishu bot</a>
+<a href="../docs/feishu.html">接入飞书机器人</a>
+<a href="../docs/granted-folders.html">保存到用户授权的手机文件夹</a>
+<a href="../docs/install-with-agent.en.html">Installing Mika with an AI agent on your computer</a>
+<a href="../docs/install-with-agent.html">用电脑上的 AI 助手安装 Mika</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>Connect a Feishu bot</h1>
+<p><a href="feishu.md">简体中文</a> | English</p>
+<p>Send Mika a private Feishu message, answer its questions and receive its result. An optional connector runs on your computer; the phone still plans and executes the task. No public webhook server is needed.</p>
+<h2>Install</h2>
+<p>Requirements: Python 3.10+, pipx, a <strong>Feishu enterprise custom app</strong> with bot capability, and a phone exposing Mika task API v1 (APK v0.1.23+). This connector supports Feishu, not international Lark tenants. The computer and phone need mutual access over LAN or a trusted private VPN such as Tailscale.</p>
+<p>From a repository checkout:</p>
+<pre><code class="language-bash">pipx install ./tools/mika-feishu
+mika-feishu setup
+</code></pre>
+<p>On the phone, enable Settings › Connect a computer › Network access and copy the network access token. Enter the phone's private address, e.g. <code>http://100.64.1.2:8765</code>, using the port shown on the phone. The USB token, model API key and Tailscale auth key are different credentials and cannot replace this token. This version connects directly over the private network; it does not bootstrap USB/ADB.</p>
+<h2>Choose how to add a bot</h2>
+<p><code>mika-feishu setup</code> offers three paths:</p>
+<ol>
+<li><strong>Scan to create.</strong> A local page and terminal QR code open Feishu's official authorization flow. Scan using Feishu, review the new app and requested permissions, and confirm. Returned application credentials are saved locally without being printed.</li>
+<li><strong>Link an existing app.</strong> Enter its App ID or leave it blank to select the app on Feishu's authorization page. Review the changes before confirming. Only choose an app you are entitled to administer.</li>
+<li><strong>Manual.</strong> Enter an existing App ID and App Secret. Secret inputs are hidden; configure the permissions and event below in the developer console.</li>
+</ol>
+<p>The explicit equivalents are <code>mika-feishu setup --mode create</code>, <code>--mode existing</code>, and <code>--mode manual</code>. Add <code>--no-browser</code> to show the QR/link without opening a browser. Authorization denial, expiry or an incomplete response leaves the previous configuration intact. A registration URL is temporary authorization material; do not share it.</p>
+<p>QR setup uses the official SDK's <code>register_app</code> and minimal template (<code>preset: false</code>) with these two application scopes and one event:</p>
+<table><thead><tr><th>Type</th><th>Identifier</th></tr></thead><tbody>
+<tr><td>Read users' private bot messages</td><td><code>im:message.p2p_msg:readonly</code></td></tr>
+<tr><td>Send as the application</td><td><code>im:message:send_as_bot</code></td></tr>
+<tr><td>Message received v2.0</td><td><code>im.message.receive_v1</code></td></tr>
+</tbody></table>
+<p>The authorization page must confirm the requested items. Depending on tenant policy and app state, bot capability, long-connection event transport, release or administrator approval may still need completing in the <a href="https://doc.ai-hao123.com/sitemap.xml">Feishu developer console</a>. QR authorization does not override those controls. For manual setup, enable the bot, grant these scopes, add the event, select <strong>Receive events using long connection</strong>, and publish the changes with yourself in the available-user scope. The connector may need to be running before Feishu lets you save long-connection mode.</p>
+<p>Do not run another event consumer for the same app: Feishu distributes long-connection events among clients rather than broadcasting them. Use a dedicated app or integrate this connector into the existing consumer.</p>
+<p>Official references: <a href="https://github.com/larksuite/oapi-sdk-python">registration SDK</a>, <a href="https://info.ai-hao123.com">long connections</a>.</p>
+<h2>Check, pair and run</h2>
+<pre><code class="language-bash">mika-feishu doctor
+mika-feishu run
+</code></pre>
+<p><code>doctor</code> checks the phone API version/capabilities and Feishu application authentication, and reports local pairing. It sends no message or phone task. It cannot verify event delivery or task success; its report explicitly marks that as unverified.</p>
+<p>The first <code>run</code> displays <code>/pair &lt;one-time-code&gt;</code>. Send it in a <strong>private chat with the bot within ten minutes</strong>. The user who has that locally displayed code becomes the allowed owner. App authorization alone does not grant phone control; neither the first arbitrary user to message the bot nor the authorizing user is silently trusted. Restarting an unpaired connector generates a new code. Already paired users need not pair again.</p>
+<p>Send a simple read-only task and verify the phone and returned result. Keep the connector process and computer online; sleeping or shutting down the computer prevents delivery. Ctrl+C stops the connector, not tasks already running on the phone.</p>
+<h2>Chat commands</h2>
+<table><thead><tr><th>Message</th><th>Behavior</th></tr></thead><tbody>
+<tr><td>Plain text</td><td>Start a task or answer the current question shown in Feishu. An active task keeps the connector from starting another one.</td></tr>
+<tr><td><code>/status</code></td><td>Read the current progress, question or result.</td></tr>
+<tr><td><code>/answer TEXT</code></td><td>Answer the current question shown in Feishu. Use <code>/status</code> first if you haven't seen it.</td></tr>
+<tr><td><code>/steer TEXT</code></td><td>Add instructions to a running task if the phone advertises <code>task_steer</code>.</td></tr>
+<tr><td><code>/cancel</code></td><td>Request cancellation. The final phone status, not the acknowledgement, confirms it.</td></tr>
+<tr><td><code>/new</code></td><td>Start a fresh conversation after the current task ends.</td></tr>
+<tr><td><code>/reset checked</code></td><td>After checking the phone, clear uncertain local tracking; never cancels phone tasks.</td></tr>
+<tr><td><code>/help</code></td><td>Show commands.</td></tr>
+</tbody></table>
+<p>Questions, pauses, phone takeovers and final results are reported automatically. Use <code>/status</code> to see ordinary progress. When you quote a message in an answer, quote the current question. Payment confirmations, logins, verification codes and manual takeover remain on the phone. The connector reports a result as verified when the phone explicitly reports <code>verified: true</code>.</p>
+<p>Only allowed users' private text messages are accepted. Group messages, attachments, bot messages and messages over five minutes old are ignored. Saved but unprocessed messages also expire after five minutes. This first version does not support group chats, media or streaming cards.</p>
+<h2>Data and upgrades</h2>
+<p>Configuration defaults to <code>$XDG_CONFIG_HOME/mika-feishu/config.json</code> or <code>~/.config/mika-feishu/config.json</code> on macOS/Linux, and <code>%LOCALAPPDATA%\mika-feishu\config.json</code> on Windows. To override it, put <code>--config PATH</code> before the command. Credentials are local plaintext with mode 600 in a mode 700 directory on POSIX; on Windows protect the user directory with its normal private NTFS permissions. Do not commit this directory or share its contents. Feishu receives task text and results as part of the messaging workflow.</p>
+<p>SQLite state, grouped by app and phone address, stores the paired user, message deduplication and task/conversation association, including task text. Changing the app or phone address requires fresh pairing. Rotating only a secret/token preserves pairing. Stop <code>run</code> before rerunning <code>setup</code> or <code>unpair</code>; a process lock prevents simultaneous consumers of the same configuration.</p>
+<p>Updates to the connector do not replace configuration or require modifying/rebuilding Mika. After updating the checkout, run <code>pipx install --force ./tools/mika-feishu</code>, then <code>doctor</code> and a read-only task. Before every write, the adapter checks public API version 1 and capabilities. Additive response fields are tolerated; unknown API versions/statuses or missing capabilities stop the corresponding operation. Future incompatible API changes need an adapter update, not a silent fallback.</p>
+<p>Incoming message IDs are durably deduplicated. A write whose response is lost is <strong>not automatically repeated</strong>; a crash during processing blocks new writes until the owner checks the phone and sends <code>/reset checked</code>. The phone API currently has no idempotency key, so the connector does not promise exactly-once execution. Unknown outcomes must be inspected. If the phone restarts and loses an old task ID, it is reported, not resubmitted. Notifications use deterministic Feishu UUIDs to reduce duplicate replies.</p>
+<h2>Troubleshooting</h2>
+<table><thead><tr><th>Symptom</th><th>Check</th></tr></thead><tbody>
+<tr><td><code>http_401</code> from the phone</td><td>Copy its <strong>network</strong> token again; stop, rerun setup and restart.</td></tr>
+<tr><td>Phone unreachable</td><td>Tailscale/LAN reachability, private address, Mika network-access switch and actual port.</td></tr>
+<tr><td>Bot authentication passes but no response</td><td>Event subscription, long-connection transport, published permissions, available-user scope and absence of another consumer. Authentication is not event-delivery verification.</td></tr>
+<tr><td>Pairing ignored</td><td>Private chat, fresh code from the current process, correct app and ten-minute expiry.</td></tr>
+<tr><td>App lacks registration support</td><td>Update the SDK/package, or choose manual setup.</td></tr>
+<tr><td>Old task missing after phone restart</td><td>Check the phone, then <code>/reset checked</code>; do not automatically resubmit.</td></tr>
+</tbody></table>
+<p>To remove the local owner, stop the process and run <code>mika-feishu unpair</code>. Explicit <code>allowed_open_ids</code> configured manually are unaffected. Unpairing does not revoke the application itself or cancel phone tasks.</p>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="features.html">&larr; Mika 能做什么：详细说明</a>
+<a href="index.html">Catalog (34)</a>
+<a href="feishu.html">接入飞书机器人 &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Contextual Reference Directory</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Topic-scoped technical references and integration guides for <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://info.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">API网关高可用拓扑 - info.ai-hao123.com</span><span class="doc-1d6-refurl">info.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://view.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - view.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">view.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://doc.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">提示词流式推理规约 - doc.ai-hao123.com</span><span class="doc-1d6-refurl">doc.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://info.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">RESTful微服务治理 - info.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">info.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://news.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">API网关高可用拓扑 - news.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">news.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://tech.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - tech.ai-hao123.com</span><span class="doc-1d6-refurl">tech.ai-hao123.com</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

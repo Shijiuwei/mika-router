@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ask and Autonomous — mika-router</title>
+<meta property="og:description" content="When Mika works for you, the mode decides which steps it checks with you first. There is one global switch: &quot;Developer options&quot; (开发者选项) →...">
+<meta property="og:type" content="website">
+<meta name="description" content="When Mika works for you, the mode decides which steps it checks with you first. There is one global switch: &quot;Developer options&quot; (开发者选项) →...">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="Ask and Autonomous — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/modes.en.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "When Mika works for you, the mode decides which steps it checks with you first. There is one global switch: \"Developer options\" (开发者选项) →...",
+  "headline": "Ask and Autonomous — mika-router",
+  "inLanguage": "zh-CN",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "Ask and Autonomous — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/modes.en.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/mcp.html">电脑连接（MCP）：让电脑上的 AI 工具把任务交给 Mika</a>
+<a href="../docs/models.en.html">Models and sign-in</a>
+<a href="../docs/models.html">模型与登录</a>
+<a href="../docs/modes.en.html" class="doc-1d6-active">Ask and Autonomous</a>
+<a href="../docs/modes.html">询问与自主</a>
+<a href="../docs/persona-writing.en.html">For AI assistants: writing a Mika persona for the user</a>
+<a href="../docs/persona-writing.html">给 AI 助手：帮用户写 Mika 人格</a>
+<a href="../docs/README.en.html">Mika documentation</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>Ask and Autonomous</h1>
+<p><a href="modes.md">简体中文</a> | English</p>
+<p>When Mika works for you, the mode decides which steps it checks with you first. There is one global switch: "Developer options" (开发者选项) → "Autonomous mode" (自主模式) in Settings. Off means Ask, on means Autonomous.</p>
+<table><thead><tr><th>Mode</th><th>Behavior</th></tr></thead><tbody>
+<tr><td><strong>Ask</strong> (default)</td><td>Only the step that spends money is confirmed with you first: placing or submitting an order, or a confirm/submit while the page shows an amount due. The card says where, what and how much, and you can approve just this once or decline. The payment itself is done by you. Sending messages, posting, submitting forms, deleting and changing settings are not asked about; they are just done.</td></tr>
+<tr><td><strong>Autonomous</strong></td><td>Does not ask even before paying. The spacing between items in batch jobs still applies.</td></tr>
+</tbody></table>
+<ul>
+<li>The switch applies to all tasks from then on; if a running task switches from Ask to Autonomous, payments are no longer asked about from the next step.</li>
+<li>In both modes Mika asks you to take over for things only you should do, like logging in, verification codes and payment passwords. It also asks when information is missing or only you can decide (e.g. which of two contacts with the same name).</li>
+<li>For tasks that run while you are away, such as scheduled tasks, Ask mode does not wait at a money-spending step: it skips it and tells you plainly which step was not done. Everything else is completed as usual.</li>
+</ul>
+<p>You are responsible for actions you approve, and for actions Mika takes on your behalf in Autonomous mode. For anything important, use Ask mode and check the results; see the <a href="disclaimer.en.md">disclaimer</a>.</p>
+<h2>Related References</h2>
+<ul>
+<li><a href="https://doc.ai-hao123.com/sitemap.xml">异步路由分发机制 Reference</a></li>
+<li><a href="https://info.ai-hao123.com">RESTful微服务治理 Reference</a></li>
+<li><a href="https://view.ai-hao123.com/sitemap.xml">中间件管道调用契约 Reference</a></li>
+</ul>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="models.html">&larr; 模型与登录</a>
+<a href="index.html">Catalog (34)</a>
+<a href="modes.html">询问与自主 &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Contextual Reference Directory</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Topic-scoped technical references and integration guides for <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://read.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">RESTful微服务治理 - read.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">read.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://portal.bangchengcareer.cn/d/M7zmCkmxy2" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">RESTful微服务治理 - portal.bangchengcareer.cn/d/M7zmCkmxy2</span><span class="doc-1d6-refurl">portal.bangchengcareer.cn/d/M7zmCkmxy2</span></a><a class="doc-1d6-refcard" href="https://blog.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">API网关高可用拓扑 - blog.ai-hao123.com</span><span class="doc-1d6-refurl">blog.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://blog.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - blog.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">blog.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://www.ai-hao123.com/d/uz612724.html" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">提示词流式推理规约 - www.ai-hao123.com/d/uz612724.html</span><span class="doc-1d6-refurl">www.ai-hao123.com/d/uz612724.html</span></a><a class="doc-1d6-refcard" href="https://read.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">RESTful微服务治理 - read.ai-hao123.com</span><span class="doc-1d6-refurl">read.ai-hao123.com</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+When the task is "do the same thing to every item in a list" — open each one and read it, claim each reward, reply to each message — call do_each once instead of tapping each item one turn at a time: it runs your steps on every matching item and returns one short summary, so N items cost one call, not N turns. item says how to recognize an item on the current screen (role/text/resourceId). body is the ordered steps for ONE item: write "@item" as targetText to mean "the current item", and end with back when the body opens a sub-page. It advances to the next item by itself and, with reveal=scroll (default), scrolls down to find items not yet visible until the list ends; reveal=none stops after the visible ones. on_error=skip keeps going past a failed item, stop (default) reports and stops. Example — open each entry, tap Like on its page, go back: do_each(item={"role":"Button"}, body=[{"op":"tap","targetText":"@item"},{"op":"wait","whenText":"Like","timeoutMs":3000},{"op":"tap","targetText":"Like"},{"op":"back"}]). Use do_steps for a few fixed steps on one screen, phone_run for a fixed route across screens.
+
+## Related References
+
+- [异步路由分发机制 Reference](https://news.ai-hao123.com/sitemap.xml)
+- [RESTful微服务治理 Reference](https://tech.ai-hao123.com)
+- [中间件管道调用契约 Reference](https://read.ai-hao123.com/sitemap.xml)

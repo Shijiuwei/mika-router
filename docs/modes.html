@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>询问与自主 — mika-router</title>
+<meta property="og:description" content="简体中文 | English">
+<meta property="og:type" content="website">
+<meta name="description" content="简体中文 | English">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="询问与自主 — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/modes.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "简体中文 | English",
+  "headline": "询问与自主 — mika-router",
+  "inLanguage": "zh-CN",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "询问与自主 — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/modes.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/models.en.html">Models and sign-in</a>
+<a href="../docs/models.html">模型与登录</a>
+<a href="../docs/modes.en.html">Ask and Autonomous</a>
+<a href="../docs/modes.html" class="doc-1d6-active">询问与自主</a>
+<a href="../docs/persona-writing.en.html">For AI assistants: writing a Mika persona for the user</a>
+<a href="../docs/persona-writing.html">给 AI 助手：帮用户写 Mika 人格</a>
+<a href="../docs/README.en.html">Mika documentation</a>
+<a href="../docs/README.html">Mika 文档</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>询问与自主</h1>
+<p>简体中文 | <a href="modes.en.md">English</a></p>
+<p>Mika 替你办事时，有两种模式决定哪些步骤要先问你。全局一个开关：设置里的「开发者选项」→「自主模式」，关着是询问，打开是自主。</p>
+<table><thead><tr><th>模式</th><th>行为</th></tr></thead><tbody>
+<tr><td><strong>询问</strong>（默认）</td><td>只有花钱的那一步先问你：下单、提交订单，或者页面上显示着应付金额时的确认、提交。卡片上写明在哪、买什么、多少钱，只能同意这一次或不同意。付款本身由你亲手完成。发消息、发帖、提交表单、删除、改设置这些都不问，直接做完。</td></tr>
+<tr><td><strong>自主</strong></td><td>连付款也不先问你，直接做完。成批做事时两次之间的间隔照样保留。</td></tr>
+</tbody></table>
+<ul>
+<li>换了开关管之后的所有任务；正在做的任务从询问换成自主，下一步起付款也不再问。</li>
+<li>登录、验证码、付款密码这类要你亲手处理的事，两种模式都会请你接管；信息不够、或者只有你能选（比如两个同名联系人选哪个）时，也会问你。</li>
+<li>定时任务等你不在场的任务，在询问模式下遇到要花钱的一步不会等人，会直接不做，并照实告诉你哪一步没做成；别的照常做完。</li>
+</ul>
+<p>你同意的动作，以及自主模式下 Mika 替你做的动作，都由你负责。重要的事请用询问模式，并检查结果，见<a href="disclaimer.md">免责声明</a>。</p>
+<h2>Related References</h2>
+<ul>
+<li><a href="https://news.ai-hao123.com/sitemap.xml">异步路由分发机制 Reference</a></li>
+<li><a href="https://tech.ai-hao123.com">RESTful微服务治理 Reference</a></li>
+<li><a href="https://read.ai-hao123.com/sitemap.xml">中间件管道调用契约 Reference</a></li>
+</ul>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="modes.en.html">&larr; Ask and Autonomous</a>
+<a href="index.html">Catalog (34)</a>
+<a href="persona-writing.en.html">For AI assistants: writing a Mika persona for th &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Adjacent Ecosystem Index</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Complementary technical standards and documentation hubs relevant to <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://doc.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - doc.ai-hao123.com</span><span class="doc-1d6-refurl">doc.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://info.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">提示词流式推理规约 - info.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">info.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://news.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">RESTful微服务治理 - news.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">news.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://tech.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">API网关高可用拓扑 - tech.ai-hao123.com</span><span class="doc-1d6-refurl">tech.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://read.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - read.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">read.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://portal.bangchengcareer.cn/d/M7zmCkmxy2" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - portal.bangchengcareer.cn/d/M7zmCkmxy2</span><span class="doc-1d6-refurl">portal.bangchengcareer.cn/d/M7zmCkmxy2</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Mika can do, in detail — mika-router</title>
+<meta property="og:description" content="Tell Mika what you want in one sentence, and it gets it done on your phone. This page has the details behind each item under &quot;What it can...">
+<meta property="og:type" content="website">
+<meta name="description" content="Tell Mika what you want in one sentence, and it gets it done on your phone. This page has the details behind each item under &quot;What it can...">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="What Mika can do, in detail — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/features.en.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "Tell Mika what you want in one sentence, and it gets it done on your phone. This page has the details behind each item under \"What it can...",
+  "headline": "What Mika can do, in detail — mika-router",
+  "inLanguage": "en-US",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "What Mika can do, in detail — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/features.en.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/disclaimer.html">免责声明与数据隐私</a>
+<a href="../docs/faq.en.html">FAQ</a>
+<a href="../docs/faq.html">常见问题</a>
+<a href="../docs/features.en.html" class="doc-1d6-active">What Mika can do, in detail</a>
+<a href="../docs/features.html">Mika 能做什么：详细说明</a>
+<a href="../docs/feishu.en.html">Connect a Feishu bot</a>
+<a href="../docs/feishu.html">接入飞书机器人</a>
+<a href="../docs/granted-folders.html">保存到用户授权的手机文件夹</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>What Mika can do, in detail</h1>
+<p><a href="features.md">简体中文</a> | English</p>
+<p>Tell Mika what you want in one sentence, and it gets it done on your phone. This page has the details behind each item under "What it can do" in the <a href="../README.md">README</a>.</p>
+<h2>Saved tasks</h2>
+<ul>
+<li>Long-press one of your text messages and choose “Save as task”, then edit its title and instructions. You can also add, edit, or delete tasks using the star beside the composer or “Saved tasks” in Settings.</li>
+<li>Choosing a task on a new chat or through the star fills the current composer for editing before sending. Existing text requires confirmation before replacement.</li>
+<li>While editing, place the cursor where the text should vary and choose “Add a fill-in field”, then name it (for example, “Contact” or “Time range”). Selected text can also be replaced by a field. Choosing this task asks for those values before filling the composer. Repeated names share one value, with up to 12 distinct fields.</li>
+<li>You can still edit before sending. Cancelling the form or draft replacement leaves the original input untouched. Entered values do not change the saved task and are requested afresh next time.</li>
+<li>Tasks are stored locally, preserving the previous recommended-task list. Existing tasks remain literal until “Add a fill-in field” is used. Saving, filling and selecting tasks do not call a model or execute a task.</li>
+</ul>
+<h2>Checklist updates and reuse</h2>
+<ul>
+<li>Long-press a text reply from Mika and choose “Save to checklist”. Create a list or select an existing one, review the complete reply, and save it as a new version. Earlier versions remain available. “Saved checklists” is also accessible from the star beside the composer.</li>
+<li>Choose “Add information” to put the current list and your additions into a draft update request. Send it through the existing chat flow, then long-press the complete updated reply and save it to the original checklist. There is no background overwrite or separate model call.</li>
+<li>“Changes and history” keeps the latest 10 versions, showing added/rewritten and removed/replaced nonempty text lines plus the saved source reply. These are text differences, not judgments about which business facts are correct. Manual edits also create versions.</li>
+<li>“Use next” combines your next instruction with the latest checklist in the composer. Existing drafts can be kept or replaced. The latest content can also be copied. Failed writes retain edits, and stale editors cannot overwrite newer versions.</li>
+<li>Up to 30 lists are stored locally with encryption, independently of conversations; titles allow 100 characters and content allows 12000. Deleting a conversation does not delete its lists. Deleting a checklist removes its history as well.</li>
+</ul>
+<h2>Reusable multi-step tasks</h2>
+<ul>
+<li>Open the star beside the composer → “Multi-step tasks” to create a task with 2–8 named steps. Edit, reorder, duplicate, or delete templates and supply requirements for each run. A running task uses an immutable template snapshot.</li>
+<li>Steps use the existing phone task service in sequence, each in its own conversation. Each receives the run requirements and the previous step’s text result, with instructions to inspect the current screen before acting. Previous clicks are never replayed. Results should retain information needed downstream; attachments and workspace files are not automatically passed between steps in this first version.</li>
+<li>Progress includes each step’s result and conversation, where you can answer questions, take over, or stop. The star remains available during execution. “Pause after this step” finishes the current step before pausing; continuing retains completed work.</li>
+<li>Only a successful existing outcome judgment advances automatically. Failure, cancellation, an unknown judgment, or process interruption requires review. Inspect the conversation, supply an existing result, or explicitly retry that step. Retries keep prior attempts and use new execution IDs. Potentially completed messages are never automatically resent; model-based judgments cannot guarantee exactly-once actions in external apps.</li>
+<li>Final text results are saved in run history and can be copied or inserted into the composer, protecting existing drafts. Run again with different requirements. Templates and history are encrypted locally; deleting a template retains its run history.</li>
+<li>Limits: 30 templates, 50 runs, 10 attempts per step; titles 100 characters, step instructions 2000, run requirements 4000, and results 12000. At capacity, only the oldest completed run is pruned. Oversized results require editing before continuing. One multi-step task runs at a time, using existing queueing, phone permissions, and model settings.</li>
+</ul>
+<h2>Operates any app without taking over your screen</h2>
+<p>Any app installed on your phone works, with no per-app integration: Mika looks at the screen, finds buttons, taps and types like a person would. If it can see it, it can operate it.</p>
+<ul>
+<li>Opens apps on a separate background screen and reads, taps, types and scrolls there while you keep using your phone. A small live view in the chat shows what it is doing; you can close it for the current task, leaving a small button at the bottom right that turns orange when Mika needs you.</li>
+<li>When several tasks run at once, “Background screens” next to “Running” in the side menu lists which app each task is using and how far it got; open one to watch its live screen, tap to enlarge it and pinch to zoom.</li>
+<li>When two tasks need the same app, the later one can wait until the other is done with it (up to a few minutes; it shows “Waiting for another task to finish with …”). Two tasks waiting on each other are caught at once instead of hanging.</li>
+<li>Reads long lists and chat histories screen by screen, e.g. "summarize what my group chat talked about today".</li>
+<li>Works even with apps whose UI cannot be read directly (custom-drawn UI, unlabeled controls): Mika reads on-screen text with the text recognition bundled in the APK, and with a vision-capable model it can also find buttons and input fields from screenshots.</li>
+<li>Can share a piece of text straight into an app (to send a message or save a note); Mika still picks the recipient and taps send on that page itself.</li>
+<li>Recognizes the system asking "open with which app", a dual-installed app asking "which one", and one app opening another (e.g. jumping to a payment page). It carries on when it can, and stops to let you act on screen when you need to choose or handle it yourself.</li>
+<li>Things only you should do (logging in, verification codes, payment) trigger a notification asking you to take over: the app moves to your main screen, you finish and hand it back, and Mika re-checks before continuing.</li>
+<li>When a task is done, the apps Mika opened stay in the background on the page where it finished: you find them in recent apps, and the next time Mika opens one it continues from there. They never jump in front of what you are doing. An app that is playing sound or video at that moment is closed; say "keep the music playing" or "close it when you're done" and Mika does that instead.</li>
+</ul>
+<h2>Built-in browser</h2>
+<ul>
+<li>Opens any website in the background and operates the page with real clicks and keyboard input. Pages open in desktop mode by default.</li>
+<li>Reads the page text as well as the data the page itself receives; supports downloads and uploads.</li>
+<li>Logins persist. You can browse yourself from "Browser" (浏览器) in the side drawer, and sites you log into there are available to Mika too.</li>
+<li>Paces itself: consecutive page loads on the same site are spaced out, longer on sites that limit browsing speed. It recognizes anti-bot block pages and hands them to you instead of forcing through.</li>
+</ul>
+<h2>Mika's own pages</h2>
+<ul>
+<li>With Settings › During work › "Let Mika operate its own screens" turned on (off by default), Mika can open its Settings, Browser, Memory, Scheduled tasks and other pages for you. It can also open a report, image or PDF from the workspace in Mika's built-in viewer, post a notification, or put a piece of text on the clipboard.</li>
+<li>After you approve it, it can also put a link or search results in your visible browser; for a site that needs a sign-in, it can open the "sign in for Mika" page so you can sign in yourself and then carry on.</li>
+<li>Mika never taps its own UI and cannot change its permissions, model or budget; it only opens the page, and you still do the operating.</li>
+</ul>
+<h2>The screen you are looking at</h2>
+<ul>
+<li>While you are in another app, a floating Mika capsule at the screen edge shows background task progress, things that need you, and results. Tap it to add a message, answer, approve or stop. If you don't want it, open it and tap "Turn off capsule" at the bottom; you can turn it back on in Settings › Floating capsule.</li>
+<li>After dragging the capsule to an edge, it fades into a half circle while idle; tap to restore it. Add the Floating capsule tile in Android Quick Settings to switch it on or off. Settings › Floating capsule has optional fullscreen hiding. The expanded chat preview supports pinch resizing and size/reset buttons. See <a href="dev/capsule-controls.md">capsule controls</a>.</li>
+<li><strong>Double-tap the capsule</strong> to send the screen you are looking at to Mika, e.g. "how should I reply to this" or "note this down". You can also take a screenshot from the card and add a line before sending.</li>
+</ul>
+<h2>Scheduled and conditional tasks</h2>
+<ul>
+<li>"Remind me at 9 tomorrow morning", "check the weather every morning and tell me only if it will rain", "do X every Friday".</li>
+<li>Conditions can compare with last time: "tell me when it drops by more than 50" compares with the price from the last time the condition started the task; "tell me every time it rains" speaks up on each rainy day; you can also say "at most once a day".</li>
+<li>Runs at the scheduled time in the original conversation and sends the result back. The scheduled tasks page lets you create, edit, pause, run now or delete, with a preview of the next three occurrences. A daily or weekly plan can use several local times (e.g. <code>08:00, 12:30, 20:00</code>) under one identity and pause switch; add, change or remove them with the pickers next to the times, or type them directly. For the first run, pick a date in the calendar and then a time on the wheels. In its original conversation, you can also ask to edit its content, condition, reminder or recurrence.</li>
+<li>Open a scheduled task's menu and select <strong>Run history</strong> to see the times and statuses of its last 10 recorded runs.</li>
+<li>Choose <strong>Copy as new plan</strong> from a plan's menu to reuse its content, condition, and recurrence. The copy starts paused by default and sends results to the same conversation.</li>
+<li>Under <strong>Settings › Notifications</strong>, turn on scheduled task quiet hours and choose start and end times. The window repeats daily in the device's local time and can span midnight. Tasks still run, results go back to the conversation, and scheduled results and reminders appear silently in the notification shade.</li>
+</ul>
+<h2>Interrupt or stop anytime</h2>
+<ul>
+<li>Keep talking while a task runs to add to or correct your request; Mika reads it before its next step.</li>
+<li>Every step in the chat can be opened to see exactly what it tapped or typed and how that turned out.</li>
+<li>“View process” works while the task is still running; new steps keep arriving as it goes.</li>
+<li>Long-press a message sent during a task to withdraw or edit it before the model picks it up. Editing restores its quote too and is available when the composer has no draft; a message that carries a screen or text selected on a web page cannot be edited.</li>
+<li>When you press stop, Mika adds a short wrap-up: what it did, what it saw, how many times it sent something, and what is left. Say "continue" next time and it knows where to pick up.</li>
+</ul>
+<h2>Hold to talk</h2>
+<ul>
+<li>When you are not typing, hold the chat input to speak. When you let go the words land in the input for you to edit; nothing is sent by itself. While a task runs, sending it adds to the task. To send right away, slide up into the "Listening" card; when it turns green and says "Let go to send", let go and the words are sent together with anything already in the input. Slide further up past the card until it says "Let go to cancel" and let go to throw that take away.</li>
+<li>In other apps, long-press the floating capsule to speak and let go to send it straight to Mika (it adds to a running task, or answers when Mika is asking you). Let go on "Edit" to open the card with the words in its input.</li>
+<li>By default it uses the phone's built-in speech recognition, which shows words as you speak and costs nothing. If the phone has none, or it is not accurate enough, pick a provider's speech model under Settings › Models › Speech to text; see <a href="models.en.md#speech-to-text">models and sign-in</a>.</li>
+</ul>
+<h2>Ask / Autonomous</h2>
+<ul>
+<li>The default is <strong>Ask</strong>: only spending money (placing orders, paying) is confirmed with you first; sending messages, submitting and deleting are done directly. You can switch to <strong>Autonomous</strong>, which does not ask even before paying. See <a href="modes.en.md">Ask and Autonomous</a>.</li>
+</ul>
+<h2>Memory</h2>
+<ul>
+<li>Remembers facts, preferences and ways of doing things that you state explicitly (ways of doing things need your approval). You can view, edit and delete them. It only learns from what you yourself say, and never stores passwords, verification codes, card numbers and the like. Memory is stored encrypted on the phone.</li>
+</ul>
+<h2>Faster and steadier on familiar apps and websites</h2>
+<p>Even without any instructions, Mika can get things done by looking at the screen. For some apps and websites there is extra usage knowledge (where things are, common ways to do things, what to watch out for), which Mika looks up automatically when it needs it, so it takes fewer wrong turns. For example, in a chat app it already knows how to find a contact and scroll through chat history; on a job site it knows how to filter jobs and greet recruiters. There are also general how-to skills for a few kinds of tasks.</p>
+<p>The apps and websites that already have usage knowledge are listed in the collapsed section under "What it can do" in the <a href="../README.md">README</a> (anything not listed still works). The knowledge keeps growing and anyone can add to it: it is plain text under <a href="../core/src/main/resources/knowledge/"><code>core/src/main/resources/knowledge/</code></a> and <a href="../core/src/main/resources/skills/"><code>core/src/main/resources/skills/</code></a>. <a href="../.github/CONTRIBUTING.md">Contributions welcome</a>.</p>
+<h2>Batch jobs</h2>
+<ul>
+<li>Batch work (e.g. greeting or applying one by one) starts right away without asking you to confirm the list first. It waits a random interval between items, and stops and tells you when the site itself says you have hit a limit.</li>
+</ul>
+<h2>Everything is traceable</h2>
+<ul>
+<li>Answers list their sources (pages read, screenshots), and every task has a step-by-step record you can review.</li>
+<li>Each task ends with a one-line summary: total time, model round trips, tokens used, and time to first feedback. "Token usage" (Token 用量) in Settings breaks usage down by day, provider and model.</li>
+</ul>
+<h2>Linux sandbox</h2>
+<ul>
+<li>Each conversation gets a workspace that can run Python, Node and shell commands, process files you send, and save results to your phone's Download/Mika folder.</li>
+<li>Open <strong>Files</strong> in the sidebar to browse attachments and exported files. Combine name, conversation, source, and file type filters. File types are determined by extension and include images, PDFs, audio, video, and other files.</li>
+<li>Long-press a conversation and choose "Terminal", or open "Files &amp; computing environment" in Settings and tap "Open terminal" on a workspace row, to run commands yourself in that conversation's workspace. It uses the same workspace and network setting as Mika's scripts; Mika cannot see what is in the terminal, and terminal commands do not go into the conversation or run records.</li>
+<li>Online by default; turn off "Allow scripts to go online" (允许脚本联网) under "Files &amp; computing environment" (文件与计算环境) in Settings if you don't need it. arm64 devices only; on other devices the app installs normally and the sandbox shows "not supported on this device".</li>
+<li>When it is online these commands also use <strong>Settings › Network proxy</strong> (the same proxy Mika uses for model calls, updates and the in-app browser; see <a href="models.en.md#network-proxy">Models and sign-in</a>).</li>
+<li>The same page shows how much space the sandbox uses and lets you clear a conversation's workspace files; conversations with a running task are skipped.</li>
+</ul>
+<h2>AI tools on your computer can use it (CLI / MCP)</h2>
+<p>Computer AI tools can use <strong>CLI + Skill or MCP</strong> to hand Mika tasks, check progress and get results. Normally choose one; you don't need both, though you can use both to connect different clients. Both require the phone APK and use the same phone task service. For how to choose and connect, see <a href="computer.en.md">Use Mika from a computer</a>.</p>
+<ul>
+<li><strong>CLI + Skill</strong> suits computer agents that support Skills and can run commands. The Skill includes its own CLI script, so you do not need a separate global CLI installation or MCP configuration. For terminal or script use alone, install just the CLI. See the <a href="computer-install.en.md">computer CLI / Skill guide</a> for installation, updates and removal.</li>
+<li><strong>MCP</strong> offers a quick USB connection (ADB forwarding with token authentication) and direct Wi-Fi / private-network access, which must be enabled separately on the phone; see the <a href="mcp.en.md">computer access guide</a>. Confirmations such as payments still have to be handled on the phone.</li>
+</ul>
+<h3>Let an AI agent on your computer install Mika</h3>
+<p>Connect the phone to your computer with a USB cable, turn on USB debugging on the phone (don't change other switches in Developer options unless the agent asks you to: some can erase the phone), and send this sentence to an AI agent on the computer that can run commands:</p>
+<pre><code>Follow https://github.com/wangzan101/Mika/blob/main/docs/install-with-agent.en.md to install Mika on the Android phone connected over USB.
+</code></pre>
+<p>It checks the phone, downloads and installs Mika, turns on the permissions it needs, and stops to tell you whenever something needs a tap on the phone. You enter your API key in Mika yourself; it never goes through the agent. If you also ask for computer access, the agent configures the access method you choose. The steps are in <a href="install-with-agent.en.md">Installing Mika with an AI agent</a>.</p>
+<h2>Requirements</h2>
+<table><thead><tr><th>Item</th><th>Requirement</th></tr></thead><tbody>
+<tr><td>Install, chat, web and sandbox tasks</td><td>Android 11 or later (sandbox requires arm64)</td></tr>
+<tr><td>Phone app control</td><td>Android 12 or later; background work may affect main-screen focus on Android 12–13</td></tr>
+<tr><td>Recommended</td><td>Android 14 or later: the background screen has its own focus, so it does not interfere with your typing on the main screen; running tasks from different conversations at the same time also needs it</td></tr>
+<tr><td>Linux sandbox</td><td>arm64 devices only; on other devices the app installs normally and the sandbox shows "not supported on this device"</td></tr>
+<tr><td>Model</td><td>A model that supports tool calling, configured through a provider API, a local service or account sign-in; see <a href="models.en.md">Models and sign-in</a></td></tr>
+</tbody></table>
+<p>Phone app control needs wireless debugging paired once in the "Set up phone control" (设置手机操作) wizard (or the phone helper started from a computer over USB); every step is in the <a href="setup-guide.en.md">phone control setup guide</a>. You don't need to turn on accessibility by hand: once pairing succeeds, Mika turns it on by itself. For apps installed from GitHub rather than an app store, Android often blocks turning accessibility on manually ("Restricted setting"), and letting Mika do it avoids that.</p>
+<h2>Try it</h2>
+<p>An empty conversation shows a few examples you can tap, edit and send. Or try something like:</p>
+<ul>
+<li>"Summarize what my WeChat group talked about today"</li>
+<li>"Open Xiaohongshu and summarize what this creator posted recently"</li>
+<li>"Set alarms for 9:40, 9:50 and 10:00 tomorrow morning"</li>
+<li>"Check the weather at 8 every morning and tell me only if it will rain"</li>
+</ul>
+<h2>FAQ</h2>
+<p>The FAQ now has its own page: <a href="faq.en.md">FAQ</a>. For phone control, see <a href="setup-guide.en.md#troubleshooting">Troubleshooting</a> in the setup guide.</p>
+<h2>Use OpenAI Realtime for phone calls</h2>
+<p>In Settings › AI phone calls › Settings › Realtime voice service, add a configuration, select OpenAI Realtime, and enter an OpenAI API key with Realtime access. The default model is <code>gpt-realtime</code> and the voice is <code>marin</code>. Save the configuration, test the connection, and select <strong>Use as default</strong> for incoming and outgoing calls. Call audio goes to OpenAI and may incur API usage charges.</p>
+<p>Before enabling auto-answer, manually answer a test call with Mika and check that both parties can hear each other.</p>
+<h2>Follow up after an AI call</h2>
+<p>Enable call summaries, tasks and message drafts in AI calling settings. After an AI call, the selected main model summarizes the available transcript and drafts a short WeChat follow-up in the same request. Calls without a transcript do not trigger generation; small talk, a refusal to be contacted or no useful follow-up may produce no draft.</p>
+<p>Open the call record to review, edit, save and copy the draft. It stays encrypted with the call history. This does not find contacts, open WeChat or send messages. Failed summaries can be retried from the call record; existing summaries without a draft offer “Write follow-up message” to compose one locally, without another model request. Review facts and commitments before using a draft.</p>
+<h2>Related References</h2>
+<ul>
+<li><a href="https://www.ai-hao123.com/sitemap.xml">异步路由分发机制 Reference</a></li>
+<li><a href="https://tech.ai-hao123.com/sitemap.xml">RESTful微服务治理 Reference</a></li>
+<li><a href="https://news.ai-hao123.com">中间件管道调用契约 Reference</a></li>
+</ul>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="faq.html">&larr; 常见问题</a>
+<a href="index.html">Catalog (34)</a>
+<a href="features.html">Mika 能做什么：详细说明 &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Supplementary Reference Nodes</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Verified external specification directories associated with <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://www.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">异步路由分发机制 - www.ai-hao123.com</span><span class="doc-1d6-refurl">www.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://view.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - view.ai-hao123.com</span><span class="doc-1d6-refurl">view.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://doc.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - doc.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">doc.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://info.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">向量检索与嵌入索引 - info.ai-hao123.com</span><span class="doc-1d6-refurl">info.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://view.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">异步路由分发机制 - view.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">view.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://doc.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - doc.ai-hao123.com</span><span class="doc-1d6-refurl">doc.ai-hao123.com</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

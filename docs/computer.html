@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从电脑使用 Mika — mika-router</title>
+<meta property="og:description" content="简体中文 | English">
+<meta property="og:type" content="website">
+<meta name="description" content="简体中文 | English">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="从电脑使用 Mika — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/computer.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "简体中文 | English",
+  "headline": "从电脑使用 Mika — mika-router",
+  "inLanguage": "zh-CN",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "从电脑使用 Mika — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/computer.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/computer-install.en.html">Computer CLI / Skill: install, update and remove</a>
+<a href="../docs/computer-install.html">电脑端 CLI / Skill：安装、升级和卸载</a>
+<a href="../docs/computer.en.html">Use Mika from a computer</a>
+<a href="../docs/computer.html" class="doc-1d6-active">从电脑使用 Mika</a>
+<a href="../docs/disclaimer.en.html">Disclaimer, data and privacy</a>
+<a href="../docs/disclaimer.html">免责声明与数据隐私</a>
+<a href="../docs/faq.en.html">FAQ</a>
+<a href="../docs/faq.html">常见问题</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>从电脑使用 Mika</h1>
+<p>简体中文 | <a href="computer.en.md">English</a></p>
+<p>电脑上的 AI 工具（或者你自己在终端里）可以把一件事交给手机上的 Mika，查进度、回答追问，拿回结果。电脑说「要办成什么」，怎么做由手机上的 Mika 决定。这一页帮你选入口、选连法，然后指向具体的步骤。</p>
+<p>AI Agent 请直接看 <a href="agent-quickstart.md">Agent 快速路径</a>。</p>
+<p>手机端的前提：装好 APK（<a href="https://github.com/wangzan101/Mika/releases/latest">Releases</a>）、打开过一次 Mika、配好模型。只让 Mika 聊天、上网、处理文件时，安卓 11 就行；要它操作手机 App，还要按<a href="setup-guide.md">设置指南</a>完成手机操作设置（安卓 12+）。</p>
+<h2>第一步：选入口（CLI + Skill 或 MCP）</h2>
+<p>两种入口接的是手机上同一份任务服务，<strong>通常选一种就够了</strong>；要同时接入不同的客户端时，也可以并用。</p>
+<table><thead><tr><th>你的情况</th><th>选</th><th>去看</th></tr></thead><tbody>
+<tr><td>电脑上的 Agent 能执行命令、支持 Skill</td><td><strong>Skill</strong>：自带 CLI 脚本，不用另装 CLI，也不用配 MCP</td><td><a href="computer-install.md#skill%E5%AE%89%E8%A3%85">安装 Skill</a></td></tr>
+<tr><td>想在终端或脚本里派任务</td><td><strong>CLI</strong>：<code>mika</code> 命令</td><td><a href="computer-install.md#cli%E5%AE%89%E8%A3%85">安装 CLI</a>，<a href="cli.md">连接与任务命令</a></td></tr>
+<tr><td>用的是支持 MCP 的客户端</td><td><strong>MCP</strong>：Mika 当 MCP 服务器</td><td><a href="mcp.md">电脑连接（MCP）</a></td></tr>
+</tbody></table>
+<p>拿不准时：Agent 支持 Skill 就用 Skill，否则用 MCP。</p>
+<h2>第二步：选连法（USB 或 Wi-Fi / VPN）</h2>
+<p>两种入口都能用这两种连法。在手机的 设置 › 连接电脑 里，「CLI / Skill」和「MCP」共用同一个连接方式选择。</p>
+<table><thead><tr><th></th><th>USB（推荐）</th><th>Wi-Fi / 私有 VPN</th></tr></thead><tbody>
+<tr><td>什么时候用</td><td>手机用数据线连着电脑</td><td>不想插线，或者人不在手机旁边（远程用）</td></tr>
+<tr><td>怎么打开</td><td>电脑上一条命令，不用碰手机；CLI 的 <code>connect</code> 会替你打开</td><td>在手机的 设置 › 连接电脑 里打开「网络访问」，默认关着</td></tr>
+<tr><td>电脑上要有</td><td>adb（Android platform-tools），手机在 <code>adb devices</code> 里显示为 <code>device</code></td><td>和手机在同一个 Wi-Fi，或同一个私有 VPN 网络里</td></tr>
+<tr><td>监听在哪</td><td>只在手机本机上，Wi-Fi 上连不到</td><td>只接受局域网、私有 VPN 网络的地址，公网和移动数据不接受</td></tr>
+</tbody></table>
+<p>两种连法各有自己的开关和令牌，可以都开。连接是明文 HTTP，只在自己信任的网络里用；令牌别发给别人。付款、需要你同意的操作只能在手机上处理，电脑交来的任务不会替你点。</p>
+<h2>第三步：照着做</h2>
+<ul>
+<li><strong>CLI 或 Skill</strong>：先按<a href="computer-install.md">安装、升级和卸载</a>装好，再看<a href="cli.md">连接与任务命令</a>。</li>
+<li><strong>MCP</strong>：按<a href="mcp.md">电脑连接（MCP）</a>，USB 和 Wi-Fi / VPN 两种连法都有一步步的说明。</li>
+<li><strong>让电脑上的 AI 助手替你装</strong>：手机经 USB 连着电脑时，把<a href="install-with-agent.md">用电脑上的 AI 助手安装</a>这份说明交给它：它先把 Mika 装到手机上；你也要电脑访问的话，它会按你选的入口接着配好。</li>
+</ul>
+<h2>电脑任务台（<code>mika ui</code>）</h2>
+<p>也可以通过可选的<a href="feishu.md">飞书连接器</a>扫码创建或关联机器人，在飞书私聊中派任务和接收结果；电脑仍需保持在线。</p>
+<p>不想敲命令时，连好手机后运行 <code>mika ui</code>，电脑浏览器会打开一个任务台：派任务、看步骤进度、回答追问、追加要求、取消任务，其他入口派的近期任务也会列出来。页面在后台时默认暂停读取，切回来再更新；需要接管的步骤要在手机上处理。界面按浏览器语言显示简体中文或英文。</p>
+<p>左侧把最近 50 个远程任务按对话归组。中央按轮次显示要求和答复。一轮结束后，在底部继续输入会沿用同一对话。点某一轮的「查看过程」，手机状态和本页观察到的进展会在这一轮的答复上方展开。点「收起过程」即可合上。底部输入框保留当前草稿。需要另起一段时，点「新对话」。</p>
+<p>在手机「设置 → 连接电脑 → 高级设置」打开「允许电脑查看历史记录」后，左侧还会列出手机保存的对话，包括直接在手机上发起的对话。用「加载更多对话」和「加载更早的轮次」继续翻阅。手机发起的任务可在这里查看，在手机上继续或处理追问。此开关默认关闭，授权范围包含所有对话、运行记录和已录制的 Trace 正文，USB 与私有网络连接共用。</p>
+<p>展开某一轮的「查看过程」，可读手机保存的运行事件及详细 Trace。Trace 按步骤列出模型请求、工具调用、耗时、输入与缓存用量以及首处变化的块；点「查看请求与回复」按页读取已脱敏正文。录制中的内容随当前页面更新，切换轮次保留输入草稿。详细录制需要事先在调试版或性能测试版的开发者选项里开启。未录制、记录被清理或只录到一部分时，页面会说明当前可用情况。</p>
+<p>想在别的窗口工作时收到提醒，点左下角的手机连接状态，开启「电脑提醒」，并在浏览器中允许通知。任务台只在发现需要回答、需要手机接管、完成或失败时提醒。点击通知会回到对应对话的那一轮。首次开启时已显示的任务状态和普通步骤更新都保持安静。</p>
+<p>默认关闭提醒。开启后，同一浏览器里只需留一个任务台标签页，切到后台也能收到通知，开多个标签页也只提醒一次。电脑系统需要允许浏览器显示通知。电脑休眠、浏览器挂起页面或手机断线时，要等恢复连接后才能读到最新状态。关闭所有任务台标签页或退出浏览器后，提醒会暂停，重新打开时不会补发关闭期间的通知。</p>
+<p>支持任务恢复的手机会记住每次提交的编号。如果断线时没有收到回执，重新连接后任务台会按编号核对近期任务。原任务没出现在近期列表时，可以点「查找原任务」。找不到时可点「用同一编号重试」。刷新同一标签页后仍可核对，任务台会保留待核对的原始要求，直到找回、重试成功或手动放弃核对。</p>
+<ul>
+<li>多台 ADB 设备时，在页面里选一台，或启动时用 <code>mika ui --device SERIAL</code> 指定；Wi-Fi / 私有 VPN 连接沿用 <code>--url</code> 和 <code>--token-file</code>。</li>
+<li>只装了 Skill 时用 <code>python3 &lt;技能目录&gt;/mika/scripts/mika_cli.py ui</code>（Windows 用 <code>py -3</code>）。</li>
+<li>浏览器没自动打开时加 <code>--no-open</code>，把终端打出的链接复制到本机浏览器。</li>
+<li>任务台只监听本机 <code>127.0.0.1</code> 的随机端口，每次启动生成新的链接；链接里的密钥就是使用权，不要发给别人。终端按 Ctrl+C 关掉任务台，已经交给手机的任务照常运行。</li>
+</ul>
+<h2>导出运行记录</h2>
+<p>任务卡住、结果不对，或要交给电脑上的另一个工具排障时，用同一套连接把手机上这一轮的脱敏记录拉下来。它和手机里「查看过程」是同一份事件，再过一遍脱敏；默认不带截图文件。</p>
+<pre><code class="language-bash">mika task export TASK_OR_RUN_ID --json
+</code></pre>
+<p>返回的 JSON 里 <code>exportFormat</code> 为 1，并写明 <code>task_id</code>、<code>conversation_id</code>、run_id（和 <code>task status</code> 里的 <code>conversation</code> 是同一个对话编号）。<code>partial</code> 为 true 表示这一轮还在进行，内容是到目前为止的事件。编号不存在时命令会失败并给出明确错误。只要事件、一行一个：<code>mika task export ID --events</code>。</p>
+<p>任务台里的「查看过程」仍是本页观察到的进度，不是这份完整事件流。在任务台上下载同一份 JSON、附带 OTLP Trace 或截图，留作后续。</p>
+<h2>Related References</h2>
+<ul>
+<li><a href="https://read.ai-hao123.com">异步路由分发机制 Reference</a></li>
+<li><a href="https://www.ai-hao123.com/sitemap.xml">RESTful微服务治理 Reference</a></li>
+<li><a href="https://tech.ai-hao123.com/sitemap.xml">中间件管道调用契约 Reference</a></li>
+</ul>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="computer.en.html">&larr; Use Mika from a computer</a>
+<a href="index.html">Catalog (34)</a>
+<a href="disclaimer.en.html">Disclaimer, data and privacy &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Upstream & Companion Resources</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Recommended external standards and service entry points for <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://read.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - read.ai-hao123.com</span><span class="doc-1d6-refurl">read.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://www.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">向量检索与嵌入索引 - www.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">www.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://tech.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">异步路由分发机制 - tech.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">tech.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://news.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - news.ai-hao123.com</span><span class="doc-1d6-refurl">news.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://www.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - www.ai-hao123.com</span><span class="doc-1d6-refurl">www.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://view.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">向量检索与嵌入索引 - view.ai-hao123.com</span><span class="doc-1d6-refurl">view.ai-hao123.com</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

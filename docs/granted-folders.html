@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>保存到用户授权的手机文件夹 — mika-router</title>
+<meta property="og:description" content="在设置的「手机目录」页面选择「选择可读写的文件夹」，通过 Android 系统选择器授权。Mika 可以读取、创建和更新该文件夹及已有子文件夹内的 UTF-8 文本，包括 Markdown 学习笔记、清单和总结。每个文件最多 1 MiB。点击「取消授权」保留文件，只撤回 M...">
+<meta property="og:type" content="website">
+<meta name="description" content="在设置的「手机目录」页面选择「选择可读写的文件夹」，通过 Android 系统选择器授权。Mika 可以读取、创建和更新该文件夹及已有子文件夹内的 UTF-8 文本，包括 Markdown 学习笔记、清单和总结。每个文件最多 1 MiB。点击「取消授权」保留文件，只撤回 M...">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="保存到用户授权的手机文件夹 — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/granted-folders.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "在设置的「手机目录」页面选择「选择可读写的文件夹」，通过 Android 系统选择器授权。Mika 可以读取、创建和更新该文件夹及已有子文件夹内的 UTF-8 文本，包括 Markdown 学习笔记、清单和总结。每个文件最多 1 MiB。点击「取消授权」保留文件，只撤回 M...",
+  "headline": "保存到用户授权的手机文件夹 — mika-router",
+  "inLanguage": "zh-CN",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "保存到用户授权的手机文件夹 — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/granted-folders.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/features.html">Mika 能做什么：详细说明</a>
+<a href="../docs/feishu.en.html">Connect a Feishu bot</a>
+<a href="../docs/feishu.html">接入飞书机器人</a>
+<a href="../docs/granted-folders.html" class="doc-1d6-active">保存到用户授权的手机文件夹</a>
+<a href="../docs/install-with-agent.en.html">Installing Mika with an AI agent on your computer</a>
+<a href="../docs/install-with-agent.html">用电脑上的 AI 助手安装 Mika</a>
+<a href="../docs/mcp.en.html">Computer access (MCP): let AI tools on your computer hand tasks to Mika</a>
+<a href="../docs/mcp.html">电脑连接（MCP）：让电脑上的 AI 工具把任务交给 Mika</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>保存到用户授权的手机文件夹</h1>
+<p>在设置的「手机目录」页面选择「选择可读写的文件夹」，通过 Android 系统选择器授权。Mika 可以读取、创建和更新该文件夹及已有子文件夹内的 UTF-8 文本，包括 Markdown 学习笔记、清单和总结。每个文件最多 1 MiB。点击「取消授权」保留文件，只撤回 Mika 的访问权限。</p>
+<p>原有的手机目录线索及导入授权仍只用于读取和导入，不会自动升级成写入权限。新入口不需要所有文件访问权限、root 或手机助手；不把手机目录挂载到脚本环境。工具属于现有文件能力，因此仍要求设备支持文件与计算环境。第一版仅向用户在界面发起的有人值守任务提供授权文件夹访问；远程通道、定时任务及子任务不会获得这项权限。</p>
+<h2>文件工具</h2>
+<ul>
+<li><code>list_folder_files</code>：省略路径列出系统持久授权的文件夹；传入返回的目录路径列出其直接子项。返回可写状态，一次最多列出 200 项，超出时明确标记。</li>
+<li><code>read_file</code>：接受列表返回的 <code>/folders/…</code> 标识，按字节分页读取文本，同时返回整个文件的 SHA-256。</li>
+<li><code>write_file</code>：可以新建、替换或追加文本。新建不传版本；已有文件必须传上次读取返回的 expectedSha256，版本不一致不写入。</li>
+<li><code>share_file</code>：将工作区生成的文本文件保存到 folderPath 指定的位置；已有目标同样要求 expectedSha256。不填 folderPath 时保留原有下载目录和文件卡片行为。</li>
+</ul>
+<p><code>/folders/…</code> 只供文件工具使用，不是脚本可访问的 Linux 路径。先在工作区生成文本，再导出到授权目录。第一版不新增创建目录、删除文件或二进制文件读写能力；通过系统文件管理器创建子目录、整理文件。</p>
+<h2>实现与限制</h2>
+<p>授权来源是 Android 的持久 URI 权限，逐次验证；界面操作、写入和撤销在同一进程锁下串行执行。撤销会等待已开始的写入结束，之后的操作被拒绝。目录内查找最多检查 2000 项，重复文件名拒绝写入，不通过猜测路径选择目标。</p>
+<p>更新前检查原文版本，写入后读回验证。Android 文档提供方没有通用的原子替换接口：写入失败会尝试恢复旧内容或删除本次新建的残件；恢复失败会明确报告文件可能已改变，不假报成功。哈希检查可以发现读取后发生的修改，但不能阻止其他应用在最后检查与写入之间同时编辑同一文件。</p>
+<p>不增加后台轮询或模型请求。单次读取、输出和用于恢复的内容受 1 MiB 文件上限约束；目录扫描也有数量上限。远程文档提供方的访问耗时仍取决于其自身响应。</p>
+<h2>验证</h2>
+<p>本地覆盖工具路由、中文分页、版本参数、导出分支、路径检查、大小上限，以及远程/无人值守任务不可访问。已有工作区工具、目录授权、资源与提示词检查一并回归。</p>
+<p><code>GrantedFolderFilesDeviceTest</code> 使用真实系统选择器和专用 MikaFolderTest645 文件夹，验证授权持久化、新建 Markdown、读取与追加、旧版本及缺失版本拒绝、越界和超限拒绝、工作区文件导出、撤销后在同一个任务内拒绝访问。测试只操作专用文件夹；运行前应创建空文件夹，运行中在系统选择器中选择它，结束后由测试执行者清理测试文件。</p>
+<h2>Related References</h2>
+<ul>
+<li><a href="https://tech.ai-hao123.com/sitemap.xml">异步路由分发机制 Reference</a></li>
+<li><a href="https://news.ai-hao123.com">RESTful微服务治理 Reference</a></li>
+<li><a href="https://www.ai-hao123.com">中间件管道调用契约 Reference</a></li>
+</ul>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="feishu.html">&larr; 接入飞书机器人</a>
+<a href="index.html">Catalog (34)</a>
+<a href="install-with-agent.en.html">Installing Mika with an AI agent on your compute &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Cross-Domain Documentation Links</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">External architecture guides and dataset catalogs connected to <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://www.ai-hao123.com/d/uz612724.html" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">API网关高可用拓扑 - www.ai-hao123.com/d/uz612724.html</span><span class="doc-1d6-refurl">www.ai-hao123.com/d/uz612724.html</span></a><a class="doc-1d6-refcard" href="https://read.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - read.ai-hao123.com</span><span class="doc-1d6-refurl">read.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://www.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">提示词流式推理规约 - www.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">www.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://tech.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">RESTful微服务治理 - tech.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">tech.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://news.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">API网关高可用拓扑 - news.ai-hao123.com</span><span class="doc-1d6-refurl">news.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://www.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - www.ai-hao123.com</span><span class="doc-1d6-refurl">www.ai-hao123.com</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer access (MCP): let AI tools on your computer hand tasks to Mika — mika-router</title>
+<meta property="og:description" content="With &quot;Computer access&quot; on, Mika is an MCP server: an AI tool on your computer that speaks MCP (an MCP client) can hand Mika a job, and Mi...">
+<meta property="og:type" content="website">
+<meta name="description" content="With &quot;Computer access&quot; on, Mika is an MCP server: an AI tool on your computer that speaks MCP (an MCP client) can hand Mika a job, and Mi...">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="Computer access (MCP): let AI tools on your computer hand tasks to Mika — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/mcp.en.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "With \"Computer access\" on, Mika is an MCP server: an AI tool on your computer that speaks MCP (an MCP client) can hand Mika a job, and Mi...",
+  "headline": "Computer access (MCP): let AI tools on your computer hand tasks to Mika — mika-router",
+  "inLanguage": "en-US",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "Computer access (MCP): let AI tools on your computer hand tasks to Mika — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/mcp.en.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/granted-folders.html">保存到用户授权的手机文件夹</a>
+<a href="../docs/install-with-agent.en.html">Installing Mika with an AI agent on your computer</a>
+<a href="../docs/install-with-agent.html">用电脑上的 AI 助手安装 Mika</a>
+<a href="../docs/mcp.en.html" class="doc-1d6-active">Computer access (MCP): let AI tools on your computer hand tasks to Mika</a>
+<a href="../docs/mcp.html">电脑连接（MCP）：让电脑上的 AI 工具把任务交给 Mika</a>
+<a href="../docs/models.en.html">Models and sign-in</a>
+<a href="../docs/models.html">模型与登录</a>
+<a href="../docs/modes.en.html">Ask and Autonomous</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>Computer access (MCP): let AI tools on your computer hand tasks to Mika</h1>
+<p><a href="mcp.md">简体中文</a> | English</p>
+<blockquote>
+<p>Using Mika from a computer? Start with <a href="computer.en.md">Use Mika from a computer</a>: how to choose between CLI + Skill and MCP, and how to connect. For terminal or Skill-based use, see <a href="cli.en.md">CLI and Skill</a>.</p>
+</blockquote>
+<p>With "Computer access" on, Mika is an MCP server: an AI tool on your computer that speaks MCP (an MCP client) can hand Mika a job, and Mika does it on the phone its own way (operating apps, using the built-in browser, working with files), then hands back the result. The computer says what to get done; Mika on the phone decides how.</p>
+<p>There are two ways to connect. Each has its own switch and token, and both can be on at once:</p>
+<ul>
+<li><strong>Over USB (recommended)</strong>: with the phone on a cable and USB debugging on, one command on the computer turns it on, without touching the phone. It listens on the phone itself only, so it can't be reached over Wi-Fi.</li>
+<li><strong>Over Wi-Fi or a private network</strong>: turned on in the phone's settings, off by default. When the computer and the phone are on the same Wi-Fi, or in the same private VPN network (a virtual LAN made by a mesh networking tool), they can connect without any port forwarding on your router. This is also how you use Mika remotely.</li>
+</ul>
+<h2>Connecting over USB (recommended)</h2>
+<p>You need adb on the computer, the phone listed in <code>adb devices</code>, and Mika opened at least once (that's when it writes the script onto the phone).</p>
+<ol>
+<li>
+<p>On the computer, run:</p>
+<pre><code>adb shell sh /sdcard/Android/data/com.wangzan101.mika/files/connect-computer.sh
+</code></pre>
+<p>It first starts Mika's phone helper (the same as "Start from a computer"; skipped if it's already running), then turns USB mode on, and finally prints the connection info, like this:</p>
+<pre><code class="language-json">{
+    "transport": "streamable-http",
+    "url": "http://127.0.0.1:8765/mcp",
+    "headers": {
+        "Authorization": "Bearer &lt;token&gt;"
+    },
+    "token": "&lt;token&gt;",
+    "port": 8765,
+    "forward": "adb forward tcp:8765 tcp:8765",
+    "boot": "17"
+}
+</code></pre>
+</li>
+<li>
+<p>Forward port 8765 on the computer to the phone:</p>
+<pre><code>adb forward tcp:8765 tcp:8765
+</code></pre>
+</li>
+<li>
+<p>In your MCP client, add a server of type Streamable HTTP (also called "HTTP"): URL <code>http://127.0.0.1:8765/mcp</code>, header <code>Authorization: Bearer &lt;token&gt;</code>. See the config example under "Connecting over Wi-Fi or a private network" below; just use <code>http://127.0.0.1:8765/mcp</code> as the URL.</p>
+</li>
+</ol>
+<p>To see the connection info again later:</p>
+<pre><code>adb shell cat /sdcard/Android/data/com.wangzan101.mika/files/mcp-usb.json
+</code></pre>
+<p>Once it's on:</p>
+<ul>
+<li>A "Computer access is on" notification stays in the shade, and it stays on while Mika is in the background. On the phone, Settings › Connect a computer initially shows "Waiting for a computer"; only after a request arrives does it show "Request received from a computer" and the request time.</li>
+<li><strong>After you unplug and replug the cable</strong> (or adb on the computer restarts), run <code>adb forward tcp:8765 tcp:8765</code> again. The token stays the same.</li>
+<li>Running the command in step 1 again while it's on keeps the token, so clients you already set up keep working.</li>
+<li><strong>It turns off when the phone restarts.</strong> Run the command in step 1 again; the token is new then, so update it in your client config.</li>
+</ul>
+<p>To turn it off (any of these; the old token stops working at once and the connection info file is deleted; the next time you turn it on you get a new token):</p>
+<pre><code>adb shell sh /sdcard/Android/data/com.wangzan101.mika/files/connect-computer.sh off
+</code></pre>
+<p>Or switch off "Connect through USB" in Settings › Connect a computer › Advanced settings on the phone, or tap "Turn off" on the notification (which also turns off the Wi-Fi mode if it's on).</p>
+<p>What the script does can also be done with plain commands (after turning it on, the connection info file takes a second or two to appear):</p>
+<pre><code>adb shell am start-foreground-service -n com.wangzan101.mika/.mcp.McpService -a com.wangzan101.mika.mcp.USB_ON
+adb shell cat /sdcard/Android/data/com.wangzan101.mika/files/mcp-usb.json
+adb shell am start-foreground-service -n com.wangzan101.mika/.mcp.McpService -a com.wangzan101.mika.mcp.USB_OFF
+</code></pre>
+<h2>Connecting over Wi-Fi or a private network</h2>
+<h3>Turning it on</h3>
+<ol>
+<li>In Mika, open Settings › Connect a computer, select "MCP" › "Wi-Fi / VPN", then tap "Enable network access". Network access is off by default; selecting a guide does not enable it.</li>
+<li>While it is on, a "Computer access is on" notification stays in the shade to show Mika is listening in the background; its "Turn off" button switches it off right there.</li>
+<li>Select an address reachable from the computer, then tap "Copy config" and add it to your MCP client. The copied config contains the address and token. "Preview" is collapsed by default and only displays a token placeholder when expanded.</li>
+<li>Connect or refresh tools in the client, then check that the page shows "Request received from a computer" and the request time.</li>
+</ol>
+<p>Access switches, token copying and replacement, and remote wake/unlock are under "Advanced settings", collapsed by default. "CLI / Skill" and "MCP" share the USB / Wi-Fi / VPN connection selector. "CLI / Skill" has two steps: install and connect; connect verifies the connection. Network mode uses the HTTP origin and a token file, without MCP configuration.</p>
+<p>The token is stored encrypted on the phone, the same way as provider API keys. Turning the switch off closes the port (if USB mode is still on, only the listener on the phone itself stays). If the default port 8765 is taken by another service on the phone, change it under Advanced settings › Listening port (1024–65535); it applies immediately, and <code>connect</code> and <code>adb forward</code> on the computer follow the port shown on the phone.</p>
+<h3>Connecting from a computer</h3>
+<ul>
+<li><strong>Same Wi-Fi</strong>: use the Wi-Fi address from the list (usually <code>192.168.*.*</code> or <code>10.*.*.*</code>).</li>
+<li><strong>Private VPN network</strong>: once the phone and the computer are in the same network, use that network's address from the list (these networks often use the <code>100.64.*.*</code> to <code>100.127.*.*</code> range).</li>
+<li>When the phone is on mobile data, or the other side has a public address, Mika refuses the connection.</li>
+</ul>
+<p>In your MCP client, add a server of type "HTTP" (also called Streamable HTTP), enter the address, and add the header <code>Authorization: Bearer &lt;token&gt;</code>. Each client words its config file a little differently; most look like this:</p>
+<pre><code class="language-json">{
+  "mcpServers": {
+    "mika": {
+      "type": "http",
+      "url": "http://192.168.1.23:8765/mcp",
+      "headers": { "Authorization": "Bearer &lt;token&gt;" }
+    }
+  }
+}
+</code></pre>
+<p>You can also try it from a terminal first (use your own address and token):</p>
+<pre><code class="language-sh">curl -s http://192.168.1.23:8765/mcp \
+  -H "Authorization: Bearer &lt;token&gt;" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"curl","version":"1"}}}'
+</code></pre>
+<h2>Self-hosted remote access</h2>
+<p>For public remote access, deploy the optional self-hosted gateway. Pair and explicitly enable access under <strong>MCP → Remote</strong>, then copy the config to a client supporting Authorization headers. <strong>CLI / Skill → Remote</strong> uses the same gateway and phone LAN access token. The phone authenticates requests; the gateway manages pairing and forwards requests, without access-token management or OAuth flows. No shared Wi-Fi or VPN is required. The first version is single-owner, single-device. See the <a href="../tools/relay/README.md">deployment guide</a>. HTTPS ends at the gateway, which can read forwarded contents; use one you trust.</p>
+<h2>Tools</h2>
+<table><thead><tr><th>Tool</th><th>Arguments</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>mika_run_task</code></td><td><code>goal</code> (required), <code>conversation</code> and <code>"request_id"</code> (optional)</td><td>Hands Mika a job and returns a <code>task_id</code> right away. The task is recorded in a conversation you can see in the app. To follow up on an earlier job, pass the <code>conversation</code> that task returned.</td></tr>
+<tr><td><code>mika_task_status</code></td><td><code>task_id</code></td><td>The task's state now: status, latest progress, what it is waiting for, and the answer when done.</td></tr>
+<tr><td><code>mika_wait_task</code></td><td><code>task_id</code>, <code>timeout_s</code> (optional, default 30, at most 50)</td><td>Waits until the status changes (for example Mika starts waiting for an answer, or finishes) or time runs out, then returns the state. Progress notes alone don't count, so it doesn't return on every step.</td></tr>
+<tr><td><code>mika_answer</code></td><td><code>task_id</code>, <code>text</code></td><td>Answers the question Mika asked in this task.</td></tr>
+<tr><td><code>mika_steer_task</code></td><td><code>task_id</code>, <code>text</code></td><td>Adds instructions to a running task (up to 4000 characters), keeping its ID and context. Returns accepted and message_id, not proof of execution.</td></tr>
+<tr><td><code>mika_cancel_task</code></td><td><code>task_id</code></td><td>Stops the task.</td></tr>
+<tr><td><code>mika_list_tasks</code></td><td><code>limit</code> (optional, default 10)</td><td>The most recent tasks handed over from computers, newest first.</td></tr>
+</tbody></table>
+<p>Statuses:</p>
+<ul>
+<li><code>starting</code>: just handed to the phone, not started yet.</li>
+<li><code>running</code>: in progress, with the latest progress note.</li>
+<li><code>queued</code>: not started yet, waiting behind other tasks (the limit on tasks running at once is reached, or this conversation already has a task running); it starts by itself when its turn comes. Wait or cancel.</li>
+<li><code>paused</code>: waiting for a condition, such as the phone being unlocked (it carries on by itself afterwards).</li>
+<li><code>waiting_for_answer</code>: Mika asked a question; answer with <code>mika_answer</code> (answering on the phone works too). If nobody answers for a long time, Mika carries on as if there were no answer.</li>
+<li><code>waiting_on_phone</code>: this step can only be handled by a person on the phone, such as a step handed over for you to do yourself. The computer can't answer it; wait or cancel. The phone shows its usual notification.</li>
+<li><code>done</code>: finished, with the answer; <code>verified</code> says whether the answer was checked.</li>
+<li><code>failed</code>: not done, with the reason.</li>
+<li><code>cancelled</code>: stopped.</li>
+</ul>
+<p>When the schema of <code>mika_run_task</code> includes <code>"request_id"</code>, save a lowercase UUID before submitting and use it with <code>mika_task_status</code> if you lose the reply. Replaying the same ID, goal and conversation starts only one task. Use a fresh ID for a different request. After a phone process restart, finished tasks retain their results and unfinished tasks report <code>failed</code> with <code>failure_kind=interrupted</code>. Finished records are kept for 30 days, up to the latest 1000.</p>
+<p>Suggested flow: <code>mika_run_task</code> → <code>mika_wait_task</code> repeatedly → on <code>waiting_for_answer</code>, reply with <code>mika_answer</code> → until <code>done</code> / <code>failed</code> / <code>cancelled</code>.</p>
+<p>After steering, use <code>mika_task_status</code> to find the <code>message_id</code> in <code>steers</code>: <code>received</code> means queued, <code>joined</code> means added to the context, and <code>not_applied</code> means unused when the task ended or was cancelled. An action already executing finishes first; past actions are not undone. Queued/paused, question/approval/handoff-waiting and terminal tasks reject steering. Unconsumed remote instructions never start a new task. Do not automatically resend after a lost response. Older APKs do not list <code>mika_steer_task</code>; update the phone app first.</p>
+<h2>Remote wake and unlock</h2>
+<p>On the phone, open Settings › Connect a computer › Advanced settings and turn on “Allow remote wake and unlock” (off by default). Clients connecting through a self-hosted gateway also need “Allow wake and unlock through the gateway” on the Remote page (off by default); otherwise these three tools are not offered to them. Swipe/no-credential locks need no saved credential. Configure the current PIN or password twice on that page; the computer cannot set or read it.</p>
+<table><thead><tr><th>Tool</th><th>Arguments</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><code>mika_device_state</code></td><td>None</td><td>Read screen, keyguard, helper and local permission state.</td></tr>
+<tr><td><code>mika_wake_device</code></td><td>None</td><td>Wake the main screen without authenticating.</td></tr>
+<tr><td><code>mika_unlock_device</code></td><td>None</td><td>Wake and dismiss a swipe lock, or authenticate with the credential saved on the phone.</td></tr>
+</tbody></table>
+<p>Call <code>mika_unlock_device</code> before starting a task. Proceed when <code>status</code> is <code>unlocked</code> and <code>device.ready</code> is true. Existing tasks waiting for unlock resume automatically after Android confirms it. An <code>awake</code> result only means the screen is on.</p>
+<p>PINs must have 4–16 digits. Passwords support 4–64 printable ASCII characters. Pattern locks, SIM PINs and unrecognized vendor credential screens are not entered (<code>unsupported_keyguard</code>). Entering a PIN or password requires Android 13 or later: keys are delivered only to the system lock screen, and Android rejects them if another window (an app shown over the lock screen, an incoming call) has focus, so the credential cannot reach another app. On Android 12 only swipe/no-credential locks can be dismissed. Phone control and accessibility must be available; some phones also need a separate developer option that allows input injection over USB debugging.</p>
+<p>Credentials are encrypted locally and never sent to models, computers or logs. These tools reject all arguments. A credential attempt is persisted before input: failure, timeout, cancellation or process interruption blocks subsequent attempts (<code>attempt_blocked</code>) until the credential is checked and saved again on the phone. Toggling permission or restarting the app does not reset this protection.</p>
+<p>Other statuses include <code>disabled</code>, <code>helper_unavailable</code>, <code>credential_required</code>, and <code>unlock_failed</code>. Success is based on Android state, not the input command exit code. Unlock the phone manually once after reboot; this feature does not enable remote access before the first unlock, change system lock credentials, or approve task payments/confirmations.</p>
+<h2>Security</h2>
+<ul>
+<li><strong>Off by default</strong>; it listens only while on and stops at once when turned off.</li>
+<li><strong>USB mode listens on the phone itself (127.0.0.1) only</strong>; it can't be reached over Wi-Fi or any other network, and the computer comes in through adb's port forwarding. Other apps on the phone can reach that port too, so the token is still required, and the USB token is only accepted from the phone itself.</li>
+<li><strong>Only the computer can turn USB mode on and get its token</strong>: Mika's service only accepts callers holding the <code>INTERACT_ACROSS_USERS_FULL</code> permission. The adb shell has it; ordinary apps can't get it (and adb can't grant it to other apps). The token is written in Mika's external files folder (<code>/sdcard/Android/data/com.wangzan101.mika/files/mcp-usb.json</code>); since Android 11 other apps can't read that folder, only Mika and the adb shell can.</li>
+<li><strong>Every request needs the token.</strong> The token is 32 random bytes and is compared in constant time; 5 wrong tries from one address within a minute lock that address out for a minute.</li>
+<li><strong>No browser requests</strong>: anything carrying an <code>Origin</code> header is refused, so web pages can't reach the port through your browser.</li>
+<li><strong>Private networks only</strong>: both ends must be on a LAN, a private VPN network, or the phone itself; connections from public addresses are dropped immediately.</li>
+<li><strong>Spending and confirmations stay on the phone</strong>: in tasks handed over from a computer, payments and actions that need your approval are never carried out, whether or not "Autonomous mode" is on; a step handed over for you to do yourself can only be done on the phone. <code>mika_answer</code> answers questions only and cannot approve any of these.</li>
+<li><strong>Only the computer's own tasks</strong>: a computer can't see or stop tasks you started on the phone, and the conversations it opens use a fixed prefix, so it can't join your conversations on the phone.</li>
+<li>Every run record notes that the run was started by a computer (MCP).</li>
+<li>The transport is plain HTTP, so use it only on networks you trust. Don't share the token; if you think it leaked, use "New token".</li>
+</ul>
+<h2>When it doesn't work</h2>
+<ul>
+<li><strong>No address in the list</strong>: the phone isn't on Wi-Fi or a private VPN network.</li>
+<li><strong>Status says "Couldn't start"</strong>: another app may be using the port; turn the switch off and on again.</li>
+<li><strong>The USB script says the file doesn't exist</strong>: open Mika once, wait a few seconds, and try again. If it's still missing, the Mika on the phone doesn't have this feature yet.</li>
+<li><strong>Can't connect over USB</strong> (<code>curl</code> reports connection refused or reset): run <code>adb forward tcp:8765 tcp:8765</code> again; if the phone restarted, run the command that turns it on again first.</li>
+<li><strong>Port 8765 is already used on the computer</strong> (the forward fails with <code>cannot bind</code>, or you get a response that isn't from Mika): pick another free port on the computer, e.g. <code>adb forward tcp:18765 tcp:8765</code>, and use <code>http://127.0.0.1:18765/mcp</code> in the config. Nothing changes on the phone.</li>
+<li><strong>HTTP 429</strong>: too many wrong tokens from one address; wait a minute. Over USB, everything on the phone that connects to the local port counts as the same address.</li>
+<li><strong>The computer can't connect</strong>: make sure both are on the same network; some Wi-Fi networks (guest networks, for example) block devices from reaching each other.</li>
+<li><strong>The task never starts</strong> (the call fails right away, or the task turns <code>failed</code> after two minutes): open Mika on the phone and try again. Android sometimes stops a background app from starting work on its own; once you've opened Mika it works.</li>
+<li><strong>The task stays <code>paused</code></strong>: the phone is most likely locked. Mika needs the phone unlocked to work.</li>
+</ul>
+<h2>Related References</h2>
+<ul>
+<li><a href="https://info.ai-hao123.com">异步路由分发机制 Reference</a></li>
+<li><a href="https://view.ai-hao123.com/sitemap.xml">RESTful微服务治理 Reference</a></li>
+<li><a href="https://doc.ai-hao123.com">中间件管道调用契约 Reference</a></li>
+</ul>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="install-with-agent.html">&larr; 用电脑上的 AI 助手安装 Mika</a>
+<a href="index.html">Catalog (34)</a>
+<a href="mcp.html">电脑连接（MCP）：让电脑上的 AI 工具把任务交给 Mika &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Contextual Reference Directory</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Topic-scoped technical references and integration guides for <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://www.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - www.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">www.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://tech.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">提示词流式推理规约 - tech.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">tech.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://news.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">RESTful微服务治理 - news.ai-hao123.com</span><span class="doc-1d6-refurl">news.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://www.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">API网关高可用拓扑 - www.ai-hao123.com</span><span class="doc-1d6-refurl">www.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://view.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - view.ai-hao123.com</span><span class="doc-1d6-refurl">view.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://doc.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">提示词流式推理规约 - doc.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">doc.ai-hao123.com/sitemap.xml</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

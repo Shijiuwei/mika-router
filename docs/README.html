@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mika 文档 — mika-router</title>
+<meta property="og:description" content="简体中文 | English">
+<meta property="og:type" content="website">
+<meta name="description" content="简体中文 | English">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="Mika 文档 — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/README.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "简体中文 | English",
+  "headline": "Mika 文档 — mika-router",
+  "inLanguage": "zh-CN",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "Mika 文档 — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/README.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/persona-writing.en.html">For AI assistants: writing a Mika persona for the user</a>
+<a href="../docs/persona-writing.html">给 AI 助手：帮用户写 Mika 人格</a>
+<a href="../docs/README.en.html">Mika documentation</a>
+<a href="../docs/README.html" class="doc-1d6-active">Mika 文档</a>
+<a href="../docs/setup-guide.en.html">Setting up phone control, step by step</a>
+<a href="../docs/setup-guide.html">设置手机操作：一步一步来</a>
+<a href="../docs/agent-quickstart.en.html">Agent quick path</a>
+<a href="../docs/agent-quickstart.html">Agent 快速路径</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>Mika 文档</h1>
+<p>简体中文 | <a href="README.en.md">English</a></p>
+<p>这里是 Mika 的全部文档。第一次用，按「上手」的顺序读就够了；其余的遇到再查。</p>
+<h2>上手（按顺序）</h2>
+<table><thead><tr><th>文档</th><th>讲什么</th><th>什么时候看</th></tr></thead><tbody>
+<tr><td><a href="models.md">模型与登录</a></td><td>添加模型服务商、用账号登录、思考强度、用自己电脑或局域网里的模型</td><td>装好以后第一件事</td></tr>
+<tr><td><a href="setup-guide.md">设置手机操作</a></td><td>配对无线调试、无障碍、用电脑经 USB 启动，一步一步来</td><td>要 Mika 操作手机 App 时；只聊天、上网、处理文件可以跳过</td></tr>
+<tr><td><a href="modes.md">询问与自主</a></td><td>两种模式下哪些步骤先问你</td><td>开始让它办正事之前</td></tr>
+</tbody></table>
+<h2>用起来</h2>
+<table><thead><tr><th>文档</th><th>讲什么</th></tr></thead><tbody>
+<tr><td><a href="features.md">功能详细说明</a></td><td>README 里「能做什么」每一项的细节：后台屏、浏览器、此刻的屏幕、定时、插话、记忆、沙箱等</td></tr>
+<tr><td><a href="faq.md">常见问题</a></td><td>安装、手机操作、模型、电脑、语言、隐私方面的问答</td></tr>
+<tr><td><a href="persona-writing.md">给 AI 助手：帮用户写人格</a></td><td>写给 AI 助手看的人格编写要求：人格能改什么、选项怎么选、指令怎么写、怎么交付</td></tr>
+<tr><td><a href="disclaimer.md">免责声明与数据隐私</a></td><td>Beta 说明、使用风险、数据存在哪、发给谁</td></tr>
+</tbody></table>
+<h2>从电脑使用</h2>
+<p>先读<a href="computer.md">从电脑使用 Mika</a>：选 CLI + Skill 还是 MCP、经 USB 还是 Wi-Fi / VPN 连接。选好以后按下面对应的一份做。</p>
+<table><thead><tr><th>文档</th><th>讲什么</th></tr></thead><tbody>
+<tr><td><a href="computer-install.md">CLI / Skill：安装、升级和卸载</a></td><td>在电脑上装 <code>mika</code> 命令或 Agent 用的 Skill</td></tr>
+<tr><td><a href="cli.md">CLI 与 Skill：连接与任务命令</a></td><td>连接手机、派任务、查进度、追问和插话的命令</td></tr>
+<tr><td><a href="feishu.md">飞书机器人</a></td><td>扫码新建、关联已有应用、私聊派任务与收取结果</td></tr>
+<tr><td><a href="mcp.md">电脑连接（MCP）</a></td><td>让 MCP 客户端把任务交给 Mika：USB、Wi-Fi / VPN、工具、安全</td></tr>
+<tr><td><a href="install-with-agent.md">用电脑上的 AI 助手安装</a></td><td>写给电脑上的 AI 助手看的安装步骤：手机经 USB 连着电脑时，把这份交给它，它替你装好</td></tr>
+</tbody></table>
+<h2>参与开发</h2>
+<p>想贡献代码、补 App 和网站的使用知识，先读<a href="../.github/CONTRIBUTING.zh-CN.md">贡献指南</a>，再看<a href="dev/README.md">开发文档</a>（架构、知识格式、路线图等）。</p>
+<h2>Related References</h2>
+<ul>
+<li><a href="https://tech.ai-hao123.com/sitemap.xml">异步路由分发机制 Reference</a></li>
+<li><a href="https://news.ai-hao123.com">RESTful微服务治理 Reference</a></li>
+<li><a href="https://www.ai-hao123.com">中间件管道调用契约 Reference</a></li>
+</ul>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="README.en.html">&larr; Mika documentation</a>
+<a href="index.html">Catalog (34)</a>
+<a href="setup-guide.en.html">Setting up phone control, step by step &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Upstream & Companion Resources</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Recommended external standards and service entry points for <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://doc.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - doc.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">doc.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://info.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - info.ai-hao123.com</span><span class="doc-1d6-refurl">info.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://view.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">向量检索与嵌入索引 - view.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">view.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://doc.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">异步路由分发机制 - doc.ai-hao123.com</span><span class="doc-1d6-refurl">doc.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://info.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - info.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">info.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://news.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - news.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">news.ai-hao123.com/sitemap.xml</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

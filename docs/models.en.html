@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Models and sign-in — mika-router</title>
+<meta property="og:description" content="Mika doesn&#39;t come with a model; it uses a model provider you choose. Enter an API key, or sign in with an account. The main model must su...">
+<meta property="og:type" content="website">
+<meta name="description" content="Mika doesn&#39;t come with a model; it uses a model provider you choose. Enter an API key, or sign in with an account. The main model must su...">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="Models and sign-in — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/models.en.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "Mika doesn't come with a model; it uses a model provider you choose. Enter an API key, or sign in with an account. The main model must su...",
+  "headline": "Models and sign-in — mika-router",
+  "inLanguage": "zh-CN",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "Models and sign-in — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/models.en.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/install-with-agent.html">用电脑上的 AI 助手安装 Mika</a>
+<a href="../docs/mcp.en.html">Computer access (MCP): let AI tools on your computer hand tasks to Mika</a>
+<a href="../docs/mcp.html">电脑连接（MCP）：让电脑上的 AI 工具把任务交给 Mika</a>
+<a href="../docs/models.en.html" class="doc-1d6-active">Models and sign-in</a>
+<a href="../docs/models.html">模型与登录</a>
+<a href="../docs/modes.en.html">Ask and Autonomous</a>
+<a href="../docs/modes.html">询问与自主</a>
+<a href="../docs/persona-writing.en.html">For AI assistants: writing a Mika persona for the user</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>Models and sign-in</h1>
+<p><a href="models.md">简体中文</a> | English</p>
+<p>Mika doesn't come with a model; it uses a model provider you choose. Enter an API key, or sign in with an account. The main model must support tool calling.</p>
+<h2>Add a model</h2>
+<p>Open "Models" (模型) in Settings (the app also walks you through this on first launch). Presets for many common providers are built in; the list is under "Supported model providers" in the <a href="../README.md">README</a>. For any other provider pick Custom (自定义), which takes any OpenAI-compatible, Anthropic, Gemini or OpenAI Responses endpoint.</p>
+<ol>
+<li>Add a provider: pick a preset, or pick Custom and enter the endpoint URL; enter your API key. For servers you run yourself, such as Ollama or LM Studio, the address is prefilled with the default port; change it to that machine’s address, and the key is optional.</li>
+<li>Tap "Test and save" (测试并保存). When you connect your first provider, a main model is picked automatically. If the provider has no model list, the list lacks the model you want, or listing fails, tap "Enter a model name yourself", type the model ID from the provider's docs and tap "Test and save" again: only that model gets a test call, and the provider is saved only if it works. When picking a role you can also type a model name under any provider; typed models are tagged "Typed in". If the provider just will not connect and you want it saved anyway, tap "Don’t test, save anyway": it saves only the address and key, without listing models or making a test call. Such a provider is marked "not tested"; from its page you can test it again or refresh to list its models. An untested model never becomes the main model on its own: picking one as the main model on that provider tests it first, and if a task fails on a model error while the main model is still untested, the message points you to “Test again” on that provider.</li>
+<li>The main model must support tool calling. Optional: a vision model (understands the UI and finds buttons in screenshots), a light model (anything cheap and fast; handles small jobs like judging task outcomes and extracting memories) and speech to text (see below).</li>
+</ol>
+<p>The first three roles: the <strong>main model</strong> (does the work; must support tool calling), the <strong>vision model</strong> (describes the UI and locates things in screenshots; off by default on a fresh install, or choose "use main model"), and the <strong>light model</strong> (small jobs like judging outcomes, extracting memories and understanding intent; defaults to the main model). For exactly what "Test and save" tries and where the capability tags on the model list come from, see <a href="../.github/CONTRIBUTING.md#model-configuration-details">model configuration details</a> in the contributing guide.</p>
+<p>Whether a model can see images: if the provider's model list says, Mika goes by that; if it doesn't (many relays and self-hosted services don't), the preset's initial value applies, and a custom provider is assumed not to see. Tap a model on the provider's page and the sheet has a "Can see images" switch: what you set wins, even over the list. When the main model can see, screenshots go straight to it instead of costing a separate vision call. Picking the main model itself as the vision model (or choosing "use main model") also counts as saying the main model can see; switching away undoes it.</p>
+<h3>OpenDesign Go</h3>
+<p>Subscribe to <a href="https://tech.ai-hao123.com">OpenDesign Go</a> and create a workspace API key using its <a href="https://read.ai-hao123.com/sitemap.xml">API setup guide</a>. In Mika, add the <strong>OpenDesign Go</strong> preset, enter that key and tap <strong>Test and save</strong>. The preset uses Chat Completions at <code>https://amr-link.open-design.ai/v1</code>; Mika loads the models available to your key. If you type a model name, use an exact ID from that catalog and choose a tool-capable main model. Image support depends on the selected model, so use a suitable vision model for screenshot tasks.</p>
+<h2>Check task cost</h2>
+<p>When using the official DeepSeek API, turn on <strong>Show task cost</strong> under <strong>Settings › Task running</strong>. After a new task ends, the estimate appears in Chinese yuan next to the token count. Mika uses the official price table and the usage recorded for the task. It shows a range during possible weekday peak hours and marks estimates as partial when some requests cannot be priced. Check your DeepSeek bill for the final charge.</p>
+<h2>Jev decision model (optional)</h2>
+<p>Configure it separately in <strong>Settings › Models › Decision model · Jev</strong>. It is off by default and does not change your main, vision or light model selections.</p>
+<table><thead><tr><th>Provider</th><th>Complete request URL</th><th>Default model ID</th></tr></thead><tbody>
+<tr><td>TypeSafe</td><td><code>https://api.typesafe.ai/v1/systemone</code></td><td><code>jev-1.14.0</code></td></tr>
+<tr><td>OpenRouter</td><td><code>https://openrouter.ai/api/v1/systemone</code></td><td><code>typesafe/jev-1.14</code></td></tr>
+<tr><td>Custom</td><td>A complete System One-compatible endpoint</td><td>As specified by the provider</td></tr>
+</tbody></table>
+<p>Enter that provider's API key, enable the switch and choose <strong>Save</strong>. Changes apply to the next task. Selecting a different provider preset clears the previous key. <strong>Test connection</strong> classifies a fixed greeting without sending conversations or screenshots, saving settings, or enabling the service. The provider may charge for this test. Custom endpoints require HTTPS, except for local or LAN services; a chat <code>/chat/completions</code> endpoint is not compatible.</p>
+<p>When enabled, Jev classifies intent at the chat entry point (discussion, reading or action), and selects saved routes when experience replay is enabled. Intent classification sends the current request and a small amount of recent conversation. Route selection sends the request, candidate templates and parameters extracted from the user's exact words. The API key and settings are encrypted on the phone. The main model still plans, generates text and calls tools; Jev never operates the phone directly or replaces confirmation gates.</p>
+<p>Missing candidates, ambiguous parameters, low probabilities, errors and timeouts fall back to the existing model flow. A confident choice not to reuse a route skips replay and lets the main model plan. Disable and save to stop Jev calls in new tasks; tasks already running keep their starting configuration. Usage is recorded by model name, and <code>jev_intent</code> / <code>jev_route</code> run events identify selection, skipped replay or fallback. This version does not use images, Box grounding, per-step UI action selection or memory generation.</p>
+<h2>Speech to text</h2>
+<p>The fourth role, used when you hold to talk; pick it under Settings › Models › Speech to text. By default it uses the phone's built-in speech recognition, which shows words as you speak and costs nothing. If the phone has none, or it is not accurate enough, pick a provider's speech model: it transcribes after you finish speaking and uses your quota. The list only shows models whose names look like speech models; for anything else, type the model name in by hand under that provider. Picking runs a short test transcription of silence and only selects the model if it works; otherwise you see why right away. If the phone's recognizer never responds when you hold to talk, Mika tells you and points you here; it never switches to a paid model by itself.</p>
+<h2>Sign in with an account (no key needed)</h2>
+<p>At the top of "Add provider" is the group "Sign in with an account · no key needed". Tap one to read what happens, sign in in the browser, and come back to Mika to see the account and its models; you can set one as the main model right there.</p>
+<ul>
+<li><strong>ChatGPT</strong> (Plus or Pro, uses your plan's usage): tap "Continue with ChatGPT" and sign in in the browser.</li>
+<li><strong>xAI / Grok</strong> (SuperGrok or X Premium+ subscription): the browser opens xAI's confirmation page; check that it shows the same short code as your phone, then approve. This sign-in borrows the public sign-in entry of xAI's official command-line tool; xAI did not set it up for Mika and may restrict this use. Some subscription tiers still can't make calls after signing in (403); use an xAI API key in that case.</li>
+<li><strong>OpenRouter</strong>: OpenRouter's official authorization for third-party apps. Once you approve, OpenRouter gives Mika a key of your own (named "Mika"), paid from your OpenRouter balance; to stop, delete it on OpenRouter's Keys page.</li>
+</ul>
+<p>Signing out only clears the sign-in on this phone.</p>
+<h2>Check current allowance</h2>
+<p>Open <strong>Settings › Models › Token usage</strong>. The top section shows the current allowance for each configured provider. Use the date filters below to review the token usage recorded on this device.</p>
+<p>DeepSeek, Kimi, and SiliconFlow show the account balance. OpenRouter shows how much the current key can still spend. Tap the row to see the account balance on OpenRouter. For providers such as ChatGPT, <strong>Manage usage</strong> opens the official site. Tap <strong>Refresh</strong> to check current allowances again.</p>
+<h2>Reasoning effort</h2>
+<p>Models on ChatGPT sign-in, xAI sign-in, and the Responses API can adjust <strong>Reasoning effort</strong> below each role card; OpenAI-compatible, Anthropic Messages, and Gemini models can too when the provider's model list states the levels for that model. The default leaves the choice to the provider. "Use main model" inherits its effort; explicitly picking the same model lets each role use a different effort. Options come from the provider's model list when available (the Anthropic model list states each model's levels; models that only take a thinking budget get none). Without listed levels, only Responses models get generic manual options, subject to server support; OpenAI-compatible, Anthropic, and Gemini models are not guessed. Higher effort usually takes longer and uses more tokens.</p>
+<h2>Response speed</h2>
+<p>In <strong>Settings → Models → Providers</strong>, open your OpenAI (API key) or ChatGPT provider and tap a model. Under <strong>Use as</strong>, select <strong>Response speed</strong>. Default uses the server setting. Choose Fast or Ultrafast to request that tier. The choice is saved per provider and model and applies to every role that uses that model. Availability depends on the model, project, or ChatGPT plan, and faster tiers may use more of your API or plan budget. If the server rejects a tier, select Default again.</p>
+<h2>Context window and compaction</h2>
+<p>Open <strong>Context and compaction</strong> under a role in <strong>Settings › Models</strong>. Leave the window blank to use the selected model’s window. Leave the trigger blank for automatic compaction, or enter an absolute token count. The trigger counts the whole request, including the system prompt, tools, and messages. A window of 1,000,000 tokens has an automatic trigger of 967,000. Enter 600,000 to compact earlier. Use digits only in the fields. The dialog shows the allowed range and effective values. After compaction, the request can grow by a margin before it triggers again.</p>
+<p>The settings apply on the next task and are shared by roles using the same provider and model. Choose <strong>Reset</strong> and save to restore both defaults. If reselecting a model gives it a smaller window, the effective trigger stays within its new bounds. A window override sets the local budget. The provider still enforces its own context limit.</p>
+<h2>Models on your own computer or LAN</h2>
+<p>When adding a provider choose "Custom" (自定义); the base URL may start with <code>http://</code>, e.g. <code>http://192.168.1.10:11434/v1</code> (with the phone on the same Wi-Fi). Local and LAN addresses show no warning; an unencrypted address outside your LAN shows a short warning, since your API key and chats could be seen by others on the network. Use <code>https://</code> when you can.</p>
+<h2>Network proxy</h2>
+<p>If you need a proxy to reach a model service but don't want a system-wide VPN, enter an address in <strong>Settings › Network proxy</strong>: <code>http://host:port</code> or <code>socks5://host:port</code> (<code>socks5h</code> works too; host names are resolved by the proxy). For a proxy that needs a login, write <code>http://user:password@host:port</code>. The address is stored encrypted on the phone; the screen only shows the scheme, host and port.</p>
+<ul>
+<li>Goes through the proxy: model requests (chat, speech to text, connection tests), model lists, provider allowance checks, token exchange when you sign in with an account, in-app update downloads, the in-app browser, and commands in Files &amp; computing environment (while network access is on there).</li>
+<li>Always direct: addresses on this phone or your LAN (localhost, 127.x, 10.x, 172.16–31.x, 192.168.x, 100.64–127.x, names ending in <code>.local</code> or <code>.lan</code>, and single-word machine names), so local models such as Ollama or LM Studio keep working.</li>
+<li>If the proxy can't be reached or rejects the user name or password, Mika says so instead of blaming your key or model.</li>
+<li><code>https://</code> proxies (an encrypted connection to the proxy itself) are only used by commands in Files &amp; computing environment; Mika's own connections stay direct. Use <code>http://</code> or <code>socks5://</code> to cover everything.</li>
+<li>The in-app browser uses the proxy only if the phone's WebView supports a per-app proxy, and it can't use a SOCKS proxy that needs a login. In those cases the settings row says the browser connects directly.</li>
+</ul>
+<h2>API key pool and auto-rotation</h2>
+<p>You can add multiple API keys for any provider by separating them with newlines, commas, or semicolons in the API key field, or using the "Add API Key" button under the provider's details page.</p>
+<ul>
+<li><strong>Round-robin load balancing</strong>: When multiple healthy keys are active, Mika rotates requests evenly across the pool, multiplying your rate limit and token throughput.</li>
+<li><strong>Sub-50ms failover on rate limits</strong>: If a key hits an <code>HTTP 429</code> (rate limit) or <code>401</code>/<code>403</code> (quota exhausted or invalid), Mika traps the failure, puts the affected key on a temporary cooldown (honoring the server's <code>Retry-After</code> header or a default 60s cooldown), and seamlessly swaps to the next key in <code>&lt;50ms</code> without interrupting your task.</li>
+<li><strong>Auto-unfreeze</strong>: Once a key's cooldown period ends, it automatically returns to active rotation.</li>
+</ul>
+<h2>Multi-model waterfall and fallback</h2>
+<p>To prevent tasks from failing when a provider encounters capacity outages, service degradations, or prompt token limits (e.g. <code>HTTP 413</code> or <code>5xx</code> errors):</p>
+<ul>
+<li>Mika supports configuring secondary and tertiary fallback models under each role.</li>
+<li>If all keys for your primary model fail or the provider is temporarily unavailable, execution cascades down your waterfall chain automatically.</li>
+<li>Once primary keys recover from their cooldown, subsequent tasks automatically ascend back to your primary model.</li>
+</ul>
+<h2>ChatGPT reports a workspace access error after switching accounts</h2>
+<p>If the browser says the app is only available to members of its workspace and shows <code>3p_login_workspace_scope_denied</code>, first check that you selected the ChatGPT account and workspace originally used to authorize it. The error means the current sign-in does not meet the app registration's workspace scope; it does not by itself establish a wrong password or exhausted plan usage.</p>
+<p>ChatGPT <strong>Sign out</strong> in Mika keeps the registered <code>client_id</code> so the same account can sign in again. If you intend to switch to a different account or workspace, repeatedly signing out and back in may keep using the old binding. To create a new connection:</p>
+<ol>
+<li>Return to Mika and cancel any pending sign-in.</li>
+<li>Note your main, vision and light model selections.</li>
+<li>Open <strong>Settings › Models › ChatGPT</strong> and confirm <strong>Delete this provider</strong> at the bottom. This removes that provider's local credentials, model configurations and registration ID; roles using it need to be selected again. Conversations stay on the phone. You do not need to uninstall Mika or clear all app data.</li>
+<li>Add ChatGPT again, tap <strong>Continue with ChatGPT</strong>, choose the intended account and workspace in the browser, complete authorization, and return to Mika.</li>
+<li>Select the models for your roles again and send a short request to verify inference. A model list confirms sign-in and model listing, not a successful inference request.</li>
+</ol>
+<p>This is for switching accounts or workspaces, not bypassing workspace access controls. If a fresh connection is still denied, check that the account has access to the workspace or contact its administrator. Include the error code and Mika version when reporting it, and redact email addresses, authorization codes and tokens.</p>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="mcp.html">&larr; 电脑连接（MCP）：让电脑上的 AI 工具把任务交给 Mika</a>
+<a href="index.html">Catalog (34)</a>
+<a href="models.html">模型与登录 &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Adjacent Ecosystem Index</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Complementary technical standards and documentation hubs relevant to <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://doc.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - doc.ai-hao123.com</span><span class="doc-1d6-refurl">doc.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://info.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">提示词流式推理规约 - info.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">info.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://news.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">RESTful微服务治理 - news.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">news.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://tech.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">API网关高可用拓扑 - tech.ai-hao123.com</span><span class="doc-1d6-refurl">tech.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://read.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - read.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">read.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://portal.bangchengcareer.cn/d/M7zmCkmxy2" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">智能Agent协作拓扑 - portal.bangchengcareer.cn/d/M7zmCkmxy2</span><span class="doc-1d6-refurl">portal.bangchengcareer.cn/d/M7zmCkmxy2</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

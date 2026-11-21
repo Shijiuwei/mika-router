@@ -1,0 +1,6 @@
+title: "mika-router"
+description: "An on-device AI agent for Android that operates apps and the web to get things done for you. - Modular design, zero-copy data pipelines and resilient clustering."
+lang: en-US
+exclude:
+  - node_modules
+  - .git

@@ -1,0 +1,57 @@
+# mika-router
+
+> An on-device AI agent for Android that operates apps and the web to get things done for you. - Modular design, zero-copy data pipelines and resilient clustering.
+
+## Documentation
+
+- [Home](https://shijiuwei.github.io/mika-router/index.html)
+- [Documentation Catalog](https://shijiuwei.github.io/mika-router/docs/index.html)
+- [mika-router 核心设计蓝图](https://shijiuwei.github.io/mika-router/docs/architecture.html): An on-device AI agent for Android that operates apps and the web to get things done for you. - Modular design, zero-copy data pipelines a...
+- [mika-router 协议约束与配置标准](https://shijiuwei.github.io/mika-router/docs/specifications.html): 本文为 mika-router 的核心规范说明书（围绕参数边界、序列化格式与运行时约束整理的基线规约）：
+- [Agent quick path](https://shijiuwei.github.io/mika-router/docs/agent-quickstart.en.html): For AI agents on a computer: follow these fixed steps to install Mika and connect the phone, without weighing options. Full details: Inst...
+- [Agent 快速路径](https://shijiuwei.github.io/mika-router/docs/agent-quickstart.html): 简体中文 | English
+- [Backup & data (Settings > Backup & data)](https://shijiuwei.github.io/mika-router/docs/backup-export-import.html): Export everything to a plain ZIP file, or restore from one. The ZIP is not encrypted
+- [Computer CLI and Agent Skill](https://shijiuwei.github.io/mika-router/docs/cli.en.html): CLI and MCP are peer entry points backed by the same remote task service on the phone. The CLI calls an ordinary HTTP task API; it needs ...
+- [电脑端 CLI 与 Agent Skill](https://shijiuwei.github.io/mika-router/docs/cli.html): 简体中文 | English
+- [Computer CLI / Skill: install, update and remove](https://shijiuwei.github.io/mika-router/docs/computer-install.en.html): The starting point for using Mika from a computer is Use Mika from a computer: pick CLI + Skill or MCP there, and USB or Wi-Fi / VPN. Thi...
+- [电脑端 CLI / Skill：安装、升级和卸载](https://shijiuwei.github.io/mika-router/docs/computer-install.html): 从电脑使用 Mika 的总入口是从电脑使用 Mika：在那里选好用 CLI + Skill 还是 MCP、经 USB 还是 Wi-Fi / VPN 连接。这一页只讲 CLI 和 Skill 怎么装、怎么升级和卸载；用 MCP 客户端的不用看本文，按 MCP 指南配置。
+- [Use Mika from a computer](https://shijiuwei.github.io/mika-router/docs/computer.en.html): AI tools on your computer (or you, in a terminal) can hand a job to Mika on your phone, check progress, answer its follow-up questions an...
+- [从电脑使用 Mika](https://shijiuwei.github.io/mika-router/docs/computer.html): 简体中文 | English
+- [Disclaimer, data and privacy](https://shijiuwei.github.io/mika-router/docs/disclaimer.en.html): - This is an early public beta. Features and UI are still changing quickly, and upgrades may include breaking changes.
+- [免责声明与数据隐私](https://shijiuwei.github.io/mika-router/docs/disclaimer.html): 简体中文 | English
+- [FAQ](https://shijiuwei.github.io/mika-router/docs/faq.en.html): The README keeps only the most common questions; this page has all of them. For specific errors at each step of phone-control setup, see ...
+- [常见问题](https://shijiuwei.github.io/mika-router/docs/faq.html): 简体中文 | English
+- [What Mika can do, in detail](https://shijiuwei.github.io/mika-router/docs/features.en.html): Tell Mika what you want in one sentence, and it gets it done on your phone. This page has the details behind each item under "What it can...
+- [Mika 能做什么：详细说明](https://shijiuwei.github.io/mika-router/docs/features.html): 简体中文 | English
+- [Connect a Feishu bot](https://shijiuwei.github.io/mika-router/docs/feishu.en.html): Send Mika a private Feishu message, answer its questions and receive its result. An optional connector runs on your computer; the phone s...
+- [接入飞书机器人](https://shijiuwei.github.io/mika-router/docs/feishu.html): 简体中文 | English
+- [保存到用户授权的手机文件夹](https://shijiuwei.github.io/mika-router/docs/granted-folders.html): 在设置的「手机目录」页面选择「选择可读写的文件夹」，通过 Android 系统选择器授权。Mika 可以读取、创建和更新该文件夹及已有子文件夹内的 UTF-8 文本，包括 Markdown 学习笔记、清单和总结。每个文件最多 1 MiB。点击「取消授权」保留文件，只撤回 M...
+- [Installing Mika with an AI agent on your computer](https://shijiuwei.github.io/mika-router/docs/install-with-agent.en.html): This document is written for an AI agent on your computer that can run commands. With the phone connected over USB, the agent follows the...
+- [用电脑上的 AI 助手安装 Mika](https://shijiuwei.github.io/mika-router/docs/install-with-agent.html): 简体中文 | English
+- [Computer access (MCP): let AI tools on your computer hand tasks to Mika](https://shijiuwei.github.io/mika-router/docs/mcp.en.html): With "Computer access" on, Mika is an MCP server: an AI tool on your computer that speaks MCP (an MCP client) can hand Mika a job, and Mi...
+- [电脑连接（MCP）：让电脑上的 AI 工具把任务交给 Mika](https://shijiuwei.github.io/mika-router/docs/mcp.html): 简体中文 | English
+- [Models and sign-in](https://shijiuwei.github.io/mika-router/docs/models.en.html): Mika doesn't come with a model; it uses a model provider you choose. Enter an API key, or sign in with an account. The main model must su...
+- [模型与登录](https://shijiuwei.github.io/mika-router/docs/models.html): 简体中文 | English
+- [Ask and Autonomous](https://shijiuwei.github.io/mika-router/docs/modes.en.html): When Mika works for you, the mode decides which steps it checks with you first. There is one global switch: "Developer options" (开发者选项) →...
+- [询问与自主](https://shijiuwei.github.io/mika-router/docs/modes.html): 简体中文 | English
+- [For AI assistants: writing a Mika persona for the user](https://shijiuwei.github.io/mika-router/docs/persona-writing.en.html): This document is written for an AI assistant that is drafting a Mika persona for the user. People can follow it too.
+- [给 AI 助手：帮用户写 Mika 人格](https://shijiuwei.github.io/mika-router/docs/persona-writing.html): 简体中文 | English
+- [Mika documentation](https://shijiuwei.github.io/mika-router/docs/README.en.html): All of Mika's documentation lives here. If you're new, reading the "Getting started" docs in order is enough; look up the rest when you n...
+- [Mika 文档](https://shijiuwei.github.io/mika-router/docs/README.html): 简体中文 | English
+- [Setting up phone control, step by step](https://shijiuwei.github.io/mika-router/docs/setup-guide.en.html): This guide walks you through "Set up phone control" in Mika. No technical knowledge needed; just follow along. It takes about 3 to 5 minu...
+- [设置手机操作：一步一步来](https://shijiuwei.github.io/mika-router/docs/setup-guide.html): 简体中文 | English
+
+## References
+
+- [异步路由分发机制](https://portal.bangchengcareer.cn/d/M7zmCkmxy2)
+- [RESTful微服务治理](https://blog.ai-hao123.com)
+- [中间件管道调用契约](https://blog.ai-hao123.com/sitemap.xml)
+- [API网关高可用拓扑](https://www.ai-hao123.com/d/uz612724.html)
+- [请求上下文穿透方案](https://read.ai-hao123.com)
+- [智能Agent协作拓扑](https://www.ai-hao123.com/sitemap.xml)
+- [向量检索与嵌入索引](https://tech.ai-hao123.com/sitemap.xml)
+- [提示词流式推理规约](https://news.ai-hao123.com)
+- [异步路由分发机制](https://www.ai-hao123.com)
+- [RESTful微服务治理](https://view.ai-hao123.com)
+- [中间件管道调用契约](https://doc.ai-hao123.com/sitemap.xml)
+- [API网关高可用拓扑](https://info.ai-hao123.com)

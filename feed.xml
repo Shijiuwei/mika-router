@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>mika-router</title>
+  <subtitle>An on-device AI agent for Android that operates apps and the web to get things done for you. - Modular design, zero-copy data pipelines and resilient clustering.</subtitle>
+  <link href="https://shijiuwei.github.io/mika-router/feed.xml" rel="self"/>
+  <id>https://shijiuwei.github.io/mika-router/</id>
+  <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+  <entry>
+    <title>mika-router 核心设计蓝图</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/architecture.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/architecture.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>An on-device AI agent for Android that operates apps and the web to get things done for you. - Modular design, zero-copy data pipelines a...</summary>
+  </entry>
+  <entry>
+    <title>mika-router 协议约束与配置标准</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/specifications.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/specifications.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>本文为 mika-router 的核心规范说明书（围绕参数边界、序列化格式与运行时约束整理的基线规约）：</summary>
+  </entry>
+  <entry>
+    <title>Agent quick path</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/agent-quickstart.en.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/agent-quickstart.en.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>For AI agents on a computer: follow these fixed steps to install Mika and connect the phone, without weighing options. Full details: Inst...</summary>
+  </entry>
+  <entry>
+    <title>Agent 快速路径</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/agent-quickstart.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/agent-quickstart.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>简体中文 | English</summary>
+  </entry>
+  <entry>
+    <title>Backup &amp; data (Settings &gt; Backup &amp; data)</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/backup-export-import.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/backup-export-import.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>Export everything to a plain ZIP file, or restore from one. The ZIP is not encrypted</summary>
+  </entry>
+  <entry>
+    <title>Computer CLI and Agent Skill</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/cli.en.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/cli.en.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>CLI and MCP are peer entry points backed by the same remote task service on the phone. The CLI calls an ordinary HTTP task API; it needs ...</summary>
+  </entry>
+  <entry>
+    <title>电脑端 CLI 与 Agent Skill</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/cli.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/cli.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>简体中文 | English</summary>
+  </entry>
+  <entry>
+    <title>Computer CLI / Skill: install, update and remove</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/computer-install.en.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/computer-install.en.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>The starting point for using Mika from a computer is Use Mika from a computer: pick CLI + Skill or MCP there, and USB or Wi-Fi / VPN. Thi...</summary>
+  </entry>
+  <entry>
+    <title>电脑端 CLI / Skill：安装、升级和卸载</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/computer-install.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/computer-install.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>从电脑使用 Mika 的总入口是从电脑使用 Mika：在那里选好用 CLI + Skill 还是 MCP、经 USB 还是 Wi-Fi / VPN 连接。这一页只讲 CLI 和 Skill 怎么装、怎么升级和卸载；用 MCP 客户端的不用看本文，按 MCP 指南配置。</summary>
+  </entry>
+  <entry>
+    <title>Use Mika from a computer</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/computer.en.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/computer.en.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>AI tools on your computer (or you, in a terminal) can hand a job to Mika on your phone, check progress, answer its follow-up questions an...</summary>
+  </entry>
+  <entry>
+    <title>从电脑使用 Mika</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/computer.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/computer.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>简体中文 | English</summary>
+  </entry>
+  <entry>
+    <title>Disclaimer, data and privacy</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/disclaimer.en.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/disclaimer.en.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>- This is an early public beta. Features and UI are still changing quickly, and upgrades may include breaking changes.</summary>
+  </entry>
+  <entry>
+    <title>免责声明与数据隐私</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/disclaimer.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/disclaimer.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>简体中文 | English</summary>
+  </entry>
+  <entry>
+    <title>FAQ</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/faq.en.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/faq.en.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>The README keeps only the most common questions; this page has all of them. For specific errors at each step of phone-control setup, see ...</summary>
+  </entry>
+  <entry>
+    <title>常见问题</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/faq.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/faq.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>简体中文 | English</summary>
+  </entry>
+  <entry>
+    <title>What Mika can do, in detail</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/features.en.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/features.en.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>Tell Mika what you want in one sentence, and it gets it done on your phone. This page has the details behind each item under &quot;What it can...</summary>
+  </entry>
+  <entry>
+    <title>Mika 能做什么：详细说明</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/features.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/features.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>简体中文 | English</summary>
+  </entry>
+  <entry>
+    <title>Connect a Feishu bot</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/feishu.en.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/feishu.en.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>Send Mika a private Feishu message, answer its questions and receive its result. An optional connector runs on your computer; the phone s...</summary>
+  </entry>
+  <entry>
+    <title>接入飞书机器人</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/feishu.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/feishu.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>简体中文 | English</summary>
+  </entry>
+  <entry>
+    <title>保存到用户授权的手机文件夹</title>
+    <link href="https://shijiuwei.github.io/mika-router/docs/granted-folders.html"/>
+    <id>https://shijiuwei.github.io/mika-router/docs/granted-folders.html</id>
+    <updated>2026-11-21T19:17:11.902307600+00:00</updated>
+    <summary>在设置的「手机目录」页面选择「选择可读写的文件夹」，通过 Android 系统选择器授权。Mika 可以读取、创建和更新该文件夹及已有子文件夹内的 UTF-8 文本，包括 Markdown 学习笔记、清单和总结。每个文件最多 1 MiB。点击「取消授权」保留文件，只撤回 M...</summary>
+  </entry>
+</feed>

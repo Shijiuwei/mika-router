@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模型与登录 — mika-router</title>
+<meta property="og:description" content="简体中文 | English">
+<meta property="og:type" content="website">
+<meta name="description" content="简体中文 | English">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="模型与登录 — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/models.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "简体中文 | English",
+  "headline": "模型与登录 — mika-router",
+  "inLanguage": "zh-CN",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "模型与登录 — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/models.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/mcp.en.html">Computer access (MCP): let AI tools on your computer hand tasks to Mika</a>
+<a href="../docs/mcp.html">电脑连接（MCP）：让电脑上的 AI 工具把任务交给 Mika</a>
+<a href="../docs/models.en.html">Models and sign-in</a>
+<a href="../docs/models.html" class="doc-1d6-active">模型与登录</a>
+<a href="../docs/modes.en.html">Ask and Autonomous</a>
+<a href="../docs/modes.html">询问与自主</a>
+<a href="../docs/persona-writing.en.html">For AI assistants: writing a Mika persona for the user</a>
+<a href="../docs/persona-writing.html">给 AI 助手：帮用户写 Mika 人格</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>模型与登录</h1>
+<p>简体中文 | <a href="models.en.md">English</a></p>
+<p>Mika 不带模型，用你自己选的模型服务商：填一把 API Key，或者用账号登录。主模型要支持工具调用。</p>
+<h2>添加模型</h2>
+<p>打开设置里的「模型」（第一次打开 App 时也会引导你）。内置了一批常见服务商的预设，清单见 <a href="readme/README.zh-CN.md">README</a> 里「支持的模型服务商」；其他服务商选「自定义」，OpenAI 兼容、Anthropic、Gemini、OpenAI Responses 接口都能接。</p>
+<ol>
+<li>添加服务商：选一个预设，或选「自定义」填接口地址；填 API Key。Ollama、LM Studio 这类自己机器上跑的服务，地址预填了默认端口，改成那台机器的地址即可，Key 可不填。</li>
+<li>点「测试并保存」，连上第一家时会自动选一个主模型。这家不提供模型列表、列表里没有你要的、或列模型出错时，点「手动填写模型名」填上服务商文档里的模型 ID，再点「测试并保存」：只用这个模型试调用一次，通了才保存。选用途时每家下面也都能手填，手填的标「手填」。实在连不上、又想先存下时，也可以点「不测试，直接保存」：只存地址和 Key，不列模型、不试调用，存下的这家标「没测试过」，之后在服务商页可以「重新测试」，或先刷新列出模型。没测过的模型不会自动当主模型，在这家选主模型时先试调用；主模型没测试通过、任务又因模型出错失败时，提示会指向这家的「重新测试」。</li>
+<li>主模型要支持工具调用。可选：看图模型（看懂界面、看图找按钮）、轻量模型（便宜快的即可，处理判断结局、提取记忆等小事）、语音转文字（见下文）。</li>
+</ol>
+<p>前三个用途分别是：<strong>主模型</strong>（办事，要支持工具调用）、<strong>看图模型</strong>（描述界面、看图定位；新装默认不用，可选「用主模型」）、<strong>轻量模型</strong>（判断结局、提取记忆、理解意图等小事，默认用主模型）。「测试并保存」具体怎么试、模型列表上的能力标签怎么来，见<a href="../.github/CONTRIBUTING.zh-CN.md#%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE%E7%BB%86%E8%8A%82">贡献指南里的模型配置细节</a>。</p>
+<p>模型能不能看图：服务商的模型列表写了就照它，没写（不少中转、自建服务都不写）按预设初值，自定义服务商默认当它看不了。在服务商详情里点一个模型，面板下面有「能看图」开关，你说了算，列表写了的也能改。主模型能看图时，截图直接附给它看，不必另调一次看图模型；看图模型选的就是主模型（或选「用主模型」）也算你说了主模型能看图，换走了就恢复。</p>
+<h3>OpenDesign Go</h3>
+<p>订阅 <a href="https://view.ai-hao123.com/sitemap.xml">OpenDesign Go</a>，按<a href="https://doc.ai-hao123.com">API 接入说明</a>创建工作区 Key。在 Mika 添加 <strong>OpenDesign Go</strong> 预设，填写这把 Key，点「测试并保存」。预设使用 Chat Completions，地址为 <code>https://amr-link.open-design.ai/v1</code>；Mika 会读取这把 Key 可用的模型。手填模型名时使用目录里的准确 ID，主模型须支持工具调用。看图能力取决于具体模型，屏幕任务请配置合适的视觉模型。</p>
+<h2>查看任务费用</h2>
+<p>用 DeepSeek 官方 API 时，可以在 <strong>设置 › 任务运行</strong> 打开「显示任务费用」。新任务结束后，Token 数旁会显示人民币估算。Mika 按官方价目表和本轮已记录的模型用量计算，工作日可能的高峰时段会显示峰谷价区间。部分请求无法估算时，金额旁会标「部分」。实际扣费以 DeepSeek 账单为准。</p>
+<h2>Jev 决策模型（可选）</h2>
+<p>在「设置 › 模型 › 决策模型 · Jev」单独配置，默认关闭，不改变主模型、看图模型或轻量模型的选择。</p>
+<table><thead><tr><th>服务商</th><th>完整请求地址</th><th>默认模型 ID</th></tr></thead><tbody>
+<tr><td>TypeSafe</td><td><code>https://api.typesafe.ai/v1/systemone</code></td><td><code>jev-1.14.0</code></td></tr>
+<tr><td>OpenRouter</td><td><code>https://openrouter.ai/api/v1/systemone</code></td><td><code>typesafe/jev-1.14</code></td></tr>
+<tr><td>自定义</td><td>填完整的 System One 兼容接口地址</td><td>按服务商填写</td></tr>
+</tbody></table>
+<p>填入这家服务商的 API Key，打开开关并点「保存」，从下一次任务生效。切换服务商预设时重新填写对应的 Key。「测试连接」只发送固定的问候语做分类，不发送聊天或屏幕，不保存或开启配置；这次测试也可能计入服务商用量。自定义地址须使用 HTTPS，本机和局域网服务允许 HTTP；聊天接口 <code>/chat/completions</code> 不能直接用在这里。</p>
+<p>开启后，Jev 用于聊天入口的意图判断（讨论、读取、执行），以及已开启经验回放时的历史路线选择。意图判断会发送本次请求和少量近期对话；路线选择会发送请求、候选路线模板及从原话提取的参数。API Key 与配置加密保存在手机上。主模型仍负责规划、文字生成和工具调用，Jev 不直接操作手机，也不替代确认关卡。</p>
+<p>没有合适候选、参数无法唯一提取、概率不足、接口出错或超时，都会回到原有模型流程。Jev 明确选择不复用路线时，则跳过回放，由主模型继续规划。关闭并保存后，新任务不再调用 Jev；已开始的任务使用启动时的配置。用量页按模型名记录这些请求；运行记录中的 <code>jev_intent</code> / <code>jev_route</code> 标明采用了决策、跳过回放还是回退。此版本没有接入图片、Box 定位、逐步界面动作选择或记忆生成。</p>
+<h2>语音转文字</h2>
+<p>按住说话时用的第四个用途，在「设置 › 模型 › 语音转文字」里选。默认用手机自带的语音识别，边说边出字，不花钱。手机没有、或认不准时，可以选服务商的语音模型：说完再转成字，用你的额度；列表里只列名字像语音模型的，没列出来的可以在每家下面手动填模型名。选的时候会先试转一小段静音，通了才选上，不通当场说原因。手机自带的识别如果按住后一直没有反应，Mika 会提示你来这里选一个，不会自己换成要花钱的模型。</p>
+<h2>用账号登录（不用填 Key）</h2>
+<p>添加服务商最上面是「用账号登录 · 不用填 Key」一组，点一家先看说明，再去浏览器里登录，登录后回到 Mika，能看到账号、可用的模型，可以直接设为主模型。</p>
+<ul>
+<li><strong>ChatGPT</strong>（Plus 或 Pro，用你的套餐额度）：点「使用 ChatGPT 继续」，在浏览器里登录。</li>
+<li><strong>xAI / Grok</strong>（SuperGrok 或 X Premium+ 订阅）：浏览器里打开 xAI 的确认页，核对手机上显示的短码后同意。这项登录借用 xAI 官方命令行工具的公开登录入口，不是 xAI 专门给 Mika 开的，xAI 可能限制这种用法；有的订阅档位登录后仍不能调用（提示 403），那时改用 xAI 的 API Key。</li>
+<li><strong>OpenRouter</strong>：OpenRouter 官方给第三方应用的授权。同意后 OpenRouter 给 Mika 一把属于你的 Key（名字是 Mika），用量从你的 OpenRouter 余额里扣；不想用了，在 OpenRouter 的 Keys 页面删掉它。</li>
+</ul>
+<p>退出登录只清这台手机上的登录信息。</p>
+<h2>查看当前额度</h2>
+<p>打开 <strong>设置 › 模型 › Token 用量</strong>。顶部按已配置的服务商显示当前额度，下方可以按日期查看本机记录的历史 Token 用量。</p>
+<p>DeepSeek、Kimi 和硅基流动显示账户余额。OpenRouter 显示当前 Key 剩余可支出金额，点该行可在 OpenRouter 查看账户余额。ChatGPT 等服务商可点「管理用量」打开官方页面。点「刷新」可以重新查询当前额度。</p>
+<h2>思考强度</h2>
+<p>用 ChatGPT 登录、xAI 登录或 Responses 接口的模型，可在各用途卡片下调整「思考强度」；OpenAI 兼容、Anthropic Messages、Gemini 接口的模型，服务商在模型列表里写明了这个模型的档位时也可以调。默认用服务商默认值；选「用主模型」时也跟随它的强度，明确选同一个模型则可分别设置。档位优先采用服务商报告的列表（Anthropic 的模型列表逐个写明支持哪些档位，只能按预算思考的模型没有档位）；没报告时只有 Responses 一类提供手动选项，实际支持情况以服务端为准，OpenAI 兼容、Anthropic、Gemini 不猜。更高强度通常更慢、消耗更多 token。</p>
+<h2>响应速度</h2>
+<p>打开「设置 → 模型 → 服务商」，点开 OpenAI（API Key）或 ChatGPT 服务商里的具体模型，在「用作」面板里选「响应速度」。默认沿用服务端设置，也可以选 Fast 或 Ultrafast。这个设置随服务商和模型保存，对使用该模型的各个用途生效。加速档位由 OpenAI 按模型、项目或订阅授权，可能增加 API 费用或套餐用量。服务端拒绝某个档位时，可以切回「默认」。</p>
+<h2>上下文窗口与压缩</h2>
+<p>在「设置 › 模型」的用途卡片下打开「上下文与压缩」。窗口留空时沿用所选模型的窗口，压缩触发点留空时自动计算；也可以分别填入 token 数。触发点按整份请求计，包含系统提示词、工具定义和消息。比如窗口填 1,000,000 时，自动触发点为 967,000，也可以手填 600,000 提前压缩。输入时只写数字。界面显示允许范围和实际生效值，压缩后会留出一段余量再触发。</p>
+<p>设置按服务商和模型保存，使用同一模型的各用途共享，下次任务生效。「重置」后保存即可恢复自动。以后重新选择模型导致窗口变小时，实际触发点会限制在新窗口的允许范围内。窗口覆盖只影响本地预算，服务端仍有自己的上下文上限。</p>
+<h2>用自己电脑或局域网里跑的模型</h2>
+<p>添加服务商时选「自定义」，接口地址填 <code>http://</code> 开头的也行，比如 <code>http://192.168.1.10:11434/v1</code>（手机和那台电脑在同一个 Wi-Fi 下）。本机和局域网的地址不加提示；不加密又不在局域网里的地址会提醒一句：API Key 和对话内容可能被同一网络里的人看到，能用 <code>https://</code> 就用。</p>
+<h2>网络代理</h2>
+<p>不想开全局 VPN、又需要代理才能连上模型服务时，在「设置 › 网络代理」填一个地址：<code>http://主机:端口</code> 或 <code>socks5://主机:端口</code>（<code>socks5h</code> 也行，域名都交给代理解析），需要账号密码时写成 <code>http://用户:密码@主机:端口</code>。地址加密保存在手机上，界面上只显示协议、主机和端口。</p>
+<ul>
+<li>走这个代理的：调模型（对话、语音转文字、连接测试）、列模型、查询服务商额度、用账号登录时换令牌、在 App 里下载更新、内置浏览器，以及「文件与计算环境」里的命令（那里允许联网时）。</li>
+<li>始终直连的：这台手机和局域网里的地址（localhost、127.x、10.x、172.16–31.x、192.168.x、100.64–127.x、<code>.local</code>、<code>.lan</code> 结尾的名字、不带点的机器名），所以 Ollama、LM Studio 这类本地模型不受影响。</li>
+<li>连不上代理、或代理拒了账号密码时，会直接说是代理的问题，不会说成 Key 或模型不对。</li>
+<li><code>https://</code> 开头的代理（先和代理本身建加密连接）只有「文件与计算环境」里的命令用得上，Mika 自己的连接照旧直连；想全部走代理请用 <code>http://</code> 或 <code>socks5://</code>。</li>
+<li>内置浏览器要手机的 WebView 支持单独设代理才会走它；带账号密码的 SOCKS 代理浏览器用不了。这两种情况设置页那一行会写明浏览器直连。</li>
+</ul>
+<h2>ChatGPT 换账号后提示工作区无权访问</h2>
+<p>如果浏览器提示“此应用仅对其工作区成员可用”，诊断代码为 <code>3p_login_workspace_scope_denied</code>，先确认选的是原先授权的 ChatGPT 账号及工作区。这个错误表示当前登录不符合该应用注册的工作区范围；不要仅凭它判断密码错误或套餐额度耗尽。</p>
+<p>Mika 的 ChatGPT“退出登录”会保留注册的 <code>client_id</code>，供同一个账号再次登录。若你确实要换到另一个账号／工作区，反复退出再登录可能仍沿用旧绑定。可以重新建立连接：</p>
+<ol>
+<li>回到 Mika，取消仍在等待的登录。</li>
+<li>记下当前主模型、看图模型和轻量模型的选择。</li>
+<li>打开“设置 › 模型 › ChatGPT”，点底部的“删除这个服务商”并确认。它会删除该服务商的本机凭据、模型配置及注册 ID，正在使用它的用途需要重新选择；聊天记录保留。无需卸载 Mika 或清除整个 App 的数据。</li>
+<li>重新添加 ChatGPT 服务商，点“使用 ChatGPT 继续”，在浏览器选择要用的账号及工作区，完成授权后回到 Mika。</li>
+<li>重新选择各用途的模型，再发一条简短请求验证。取得模型列表只能证明登录／列模型成功，不能代替实际调用测试。</li>
+</ol>
+<p>这条路径用于更换账号／工作区，不是绕过工作区访问控制。若新建连接后仍被拒绝，请确认账号有该工作区的访问权限，或联系工作区管理员；反馈时提供错误代码和 Mika 版本，遮掉邮箱、授权码及令牌。</p>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="models.en.html">&larr; Models and sign-in</a>
+<a href="index.html">Catalog (34)</a>
+<a href="modes.en.html">Ask and Autonomous &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Supplementary Reference Nodes</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Verified external specification directories associated with <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://info.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">向量检索与嵌入索引 - info.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">info.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://news.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">异步路由分发机制 - news.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">news.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://tech.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - tech.ai-hao123.com</span><span class="doc-1d6-refurl">tech.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://read.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - read.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">read.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://portal.bangchengcareer.cn/d/M7zmCkmxy2" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - portal.bangchengcareer.cn/d/M7zmCkmxy2</span><span class="doc-1d6-refurl">portal.bangchengcareer.cn/d/M7zmCkmxy2</span></a><a class="doc-1d6-refcard" href="https://blog.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">向量检索与嵌入索引 - blog.ai-hao123.com</span><span class="doc-1d6-refurl">blog.ai-hao123.com</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

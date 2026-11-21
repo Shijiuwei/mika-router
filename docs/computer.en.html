@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Use Mika from a computer — mika-router</title>
+<meta property="og:description" content="AI tools on your computer (or you, in a terminal) can hand a job to Mika on your phone, check progress, answer its follow-up questions an...">
+<meta property="og:type" content="website">
+<meta name="description" content="AI tools on your computer (or you, in a terminal) can hand a job to Mika on your phone, check progress, answer its follow-up questions an...">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta property="og:title" content="Use Mika from a computer — mika-router">
+<link rel="canonical" href="https://shijiuwei.github.io/mika-router/docs/computer.en.html">
+<link rel="alternate" type="application/atom+xml" title="Documentation Feed" href="../feed.xml">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "author": {
+    "@type": "Organization",
+    "name": "mika-router"
+  },
+  "description": "AI tools on your computer (or you, in a terminal) can hand a job to Mika on your phone, check progress, answer its follow-up questions an...",
+  "headline": "Use Mika from a computer — mika-router",
+  "inLanguage": "en-US",
+  "keywords": "异步路由分发机制, RESTful微服务治理, 中间件管道调用契约, API网关高可用拓扑, 请求上下文穿透方案, 智能Agent协作拓扑, 向量检索与嵌入索引, 提示词流式推理规约",
+  "name": "Use Mika from a computer — mika-router",
+  "url": "https://shijiuwei.github.io/mika-router/docs/computer.en.html"
+}</script>
+<link rel="stylesheet" href="../assets/layout-3a6b73.css">
+</head>
+<body>
+<div class="doc-1d6-announce">mika-router Technical Portal &middot; Static Documentation v1.0</div><header class="doc-1d6-hdr">
+<div class="doc-1d6-wrap doc-1d6-hdr-in">
+<a class="doc-1d6-brand" href="../index.html"><span class="doc-1d6-mark">MR</span><span>mika-router</span></a>
+<nav class="doc-1d6-navlinks">
+<a href="../index.html" class="">Introduction</a>
+<a href="../docs/index.html" class="">Docs Index</a>
+<a href="../docs/specifications.html" class="">Reference</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+</nav>
+</div>
+</header>
+<div class="doc-1d6-wrap">
+<div class="doc-1d6-layout2">
+<aside class="doc-1d6-side2">
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--doc-1d6-mut);margin-bottom:4px;">Docs Index</div>
+<a href="../index.html">Introduction</a>
+<a href="../docs/index.html">Docs Index</a>
+<a href="../docs/architecture.html">mika-router 核心设计蓝图</a>
+<a href="../docs/specifications.html">mika-router 协议约束与配置标准</a>
+<a href="../docs/cli.html">电脑端 CLI 与 Agent Skill</a>
+<a href="../docs/computer-install.en.html">Computer CLI / Skill: install, update and remove</a>
+<a href="../docs/computer-install.html">电脑端 CLI / Skill：安装、升级和卸载</a>
+<a href="../docs/computer.en.html" class="doc-1d6-active">Use Mika from a computer</a>
+<a href="../docs/computer.html">从电脑使用 Mika</a>
+<a href="../docs/disclaimer.en.html">Disclaimer, data and privacy</a>
+<a href="../docs/disclaimer.html">免责声明与数据隐私</a>
+<a href="../docs/faq.en.html">FAQ</a>
+<a href="../docs/index.html">All Documentation (34) &rarr;</a>
+
+</aside>
+<main class="doc-1d6-prose" style="min-width:0;">
+<div style="margin-bottom:14px;"><span class="doc-1d6-pill">Documentation</span></div>
+<article><h1>Use Mika from a computer</h1>
+<p><a href="computer.md">简体中文</a> | English</p>
+<p>AI tools on your computer (or you, in a terminal) can hand a job to Mika on your phone, check progress, answer its follow-up questions and get the result back. The computer says what to get done; Mika on the phone decides how. This page helps you pick an entry point and a connection, then points you to the step-by-step guides.</p>
+<p>AI agents: go straight to the <a href="agent-quickstart.en.md">agent quick path</a>.</p>
+<p>On the phone: install the APK (<a href="https://github.com/wangzan101/Mika/releases/latest">Releases</a>), open Mika once and add a model. If Mika only needs to chat, browse the web and work with files, Android 11 is enough; to let it operate phone apps, also finish the phone-control setup in the <a href="setup-guide.en.md">setup guide</a> (Android 12+).</p>
+<h2>Step 1: pick an entry point (CLI + Skill or MCP)</h2>
+<p>Both entry points reach the same task service on the phone. <strong>Normally one is enough</strong>; you can use both if you need to connect different clients.</p>
+<table><thead><tr><th>Your situation</th><th>Pick</th><th>Read</th></tr></thead><tbody>
+<tr><td>Your computer agent can run commands and supports Skills</td><td><strong>Skill</strong>: includes its own CLI script, so no separate CLI install and no MCP configuration</td><td><a href="computer-install.en.md#skill-install">Install the Skill</a></td></tr>
+<tr><td>You want to submit tasks from a terminal or script</td><td><strong>CLI</strong>: the <code>mika</code> command</td><td><a href="computer-install.en.md#cli-install">Install the CLI</a>, <a href="cli.en.md">connection and task commands</a></td></tr>
+<tr><td>You use a client that speaks MCP</td><td><strong>MCP</strong>: Mika acts as an MCP server</td><td><a href="mcp.en.md">Computer access (MCP)</a></td></tr>
+</tbody></table>
+<p>Not sure? If your agent supports Skills, use the Skill; otherwise use MCP.</p>
+<h2>Step 2: pick a connection (USB or Wi-Fi / VPN)</h2>
+<p>Both entry points work over either connection. In Settings › Connect a computer on the phone, "CLI / Skill" and "MCP" share the same connection selector.</p>
+<table><thead><tr><th></th><th>USB (recommended)</th><th>Wi-Fi / private VPN</th></tr></thead><tbody>
+<tr><td>When</td><td>The phone is on a cable to the computer</td><td>No cable, or you're away from the phone (remote use)</td></tr>
+<tr><td>How to turn it on</td><td>One command on the computer, without touching the phone; the CLI's <code>connect</code> does it for you</td><td>Turn on "network access" in Settings › Connect a computer on the phone; off by default</td></tr>
+<tr><td>The computer needs</td><td>adb (Android platform-tools), with the phone listed as <code>device</code> in <code>adb devices</code></td><td>To be on the same Wi-Fi as the phone, or in the same private VPN network</td></tr>
+<tr><td>Where it listens</td><td>On the phone itself only; not reachable over Wi-Fi</td><td>Accepts only LAN and private VPN addresses; public addresses and mobile data are refused</td></tr>
+</tbody></table>
+<p>Each connection has its own switch and token, and both can be on at once. The connection is plain HTTP, so use it only on networks you trust, and don't share the token. Payments and anything that needs your consent can only be handled on the phone; tasks from the computer never approve them for you.</p>
+<h2>Step 3: follow the guide</h2>
+<ul>
+<li><strong>CLI or Skill</strong>: install it with <a href="computer-install.en.md">install, update and remove</a>, then read <a href="cli.en.md">connection and task commands</a>.</li>
+<li><strong>MCP</strong>: follow <a href="mcp.en.md">Computer access (MCP)</a>, which covers both USB and Wi-Fi / VPN step by step.</li>
+<li><strong>Let an AI agent on your computer set it up</strong>: with the phone connected over USB, give it <a href="install-with-agent.en.md">Install with an AI agent on your computer</a>. It installs Mika on the phone first; if you also want computer access, it then sets up the entry point you chose.</li>
+</ul>
+<h2>Task desk (<code>mika ui</code>)</h2>
+<p>The optional <a href="feishu.en.md">Feishu connector</a> can also create/link a bot and exchange tasks and results in private chats; its computer process must stay online.</p>
+<p>If you would rather not type commands, connect the phone and run <code>mika ui</code>. Your browser opens a task desk where you can start tasks, follow their steps, answer questions, add instructions and cancel tasks; recent tasks started from other entry points show up too. Reads pause while the tab is hidden by default and resume when you come back; steps that need you still have to be handled on the phone. The desk follows the browser's language: Simplified Chinese or English.</p>
+<p>To get alerts while working in another window, open the phone connection details at the bottom left, turn on <strong>Desktop notifications</strong> and allow notifications in your browser. The desk alerts you when a task needs an answer or a phone takeover, finishes or fails. Click a notification to open the exact turn. Existing states and ordinary progress updates stay quiet.</p>
+<p>Notifications are off by default. With notifications on, keep at least one desk tab open in the same browser. Background tabs can deliver alerts, and opening extra tabs does not duplicate them. Your computer must allow the browser to show notifications. If the computer sleeps, the browser suspends the page or the phone disconnects, the desk reads the latest state when the connection resumes. Closing all desk tabs or quitting the browser pauses alerts. Reopening the desk starts from the current state.</p>
+<p>The sidebar groups the latest 50 remote tasks by conversation. Read each turn in the center and use the composer to continue after a turn ends. Select <strong>View process</strong> to expand the phone’s report and the updates observed in this tab above that turn’s reply. Select <strong>Hide process</strong> to collapse it. The composer keeps your current draft. Select <strong>New chat</strong> to start a separate conversation.</p>
+<p>On the phone, open <strong>Settings → Connect a computer → Advanced</strong> and enable <strong>Allow computers to view history</strong> to include saved phone conversations in the sidebar. <strong>Load more conversations</strong> and <strong>Load earlier turns</strong> page through the archive. Tasks started on the phone can be viewed here and continued or answered on the phone. This permission is off by default and covers all conversations, run records and recorded Trace bodies over both USB and private-network connections.</p>
+<p>Each turn’s <strong>View process</strong> can show saved run events and detailed Trace entries, including model attempts, tool calls, timing, input and cached tokens, and the first changed request block. <strong>Read request and reply</strong> loads redacted text one page at a time. Recordings update while the page is visible, and switching the inspected turn keeps the composer’s draft. Detailed recording must have been enabled beforehand in Developer options in a debug or perf build. Missing, rotated and incomplete records are identified in the view.</p>
+<p>On a phone with task recovery, the desk matches a missing submission receipt by ID when the connection returns. Choose <strong>Find task</strong> if the task is outside the recent list. If the phone has no record yet, choose <strong>Retry with the same ID</strong>. The tab keeps the pending request across a reload until you recover it, retry successfully or dismiss it.</p>
+<ul>
+<li>With several ADB devices, choose one in the page or start with <code>mika ui --device SERIAL</code>; Wi-Fi / private VPN connections use the usual <code>--url</code> and <code>--token-file</code>.</li>
+<li>With only the Skill installed, run <code>python3 &lt;skills-directory&gt;/mika/scripts/mika_cli.py ui</code>.</li>
+<li>Attach files to a new task or a follow-up with <strong>Attach files</strong>, or paste a clipboard image into the composer. Select up to 9 files totalling 200 MiB. You can remove them before sending or send files without a message. The phone imports them into that conversation’s workspace and numbers duplicate names.</li>
+<li>When a task exports a result file on the phone, its turn shows a download button with the file name and size. Select it to save a copy. A missing or changed result reports an error. Attachments and downloads require a compatible phone and desk.</li>
+<li>If no browser opens, add <code>--no-open</code> and open the printed link in a browser on this computer.</li>
+<li>The desk listens only on <code>127.0.0.1</code> on a random port and prints a new link on every start. The secret in the link is what grants access, so keep it to yourself. Ctrl+C in the terminal closes the desk; tasks already on the phone keep running.</li>
+</ul>
+<h2>Export a run record</h2>
+<p>When a task is stuck, the result looks wrong, or another tool on the computer needs to debug it, pull that turn's redacted record over the same connection. It is the same event stream as the phone's process view, redacted again, and it does not include screenshot files.</p>
+<pre><code class="language-bash">mika task export TASK_OR_RUN_ID --json
+</code></pre>
+<p>The JSON has <code>exportFormat</code> 1 and states <code>task_id</code>, <code>conversation_id</code> and run_id (<code>conversation_id</code> is the same value as <code>conversation</code> on <code>task status</code>). <code>partial: true</code> means the turn is still in progress and the events are what has been written so far. An unknown id fails with an explicit error. For one event per line: <code>mika task export ID --events</code>.</p>
+<p><strong>View process</strong> on the desk is still the progress observed in that page, not this full event stream. Downloading the same JSON from the desk, or attaching an OTLP Trace or screenshots, is left for later.</p>
+<h2>Related References</h2>
+<ul>
+<li><a href="https://blog.ai-hao123.com/sitemap.xml">异步路由分发机制 Reference</a></li>
+<li><a href="https://www.ai-hao123.com/d/uz612724.html">RESTful微服务治理 Reference</a></li>
+<li><a href="https://read.ai-hao123.com">中间件管道调用契约 Reference</a></li>
+</ul>
+</article>
+<div class="doc-1d6-card" style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+<a href="computer-install.html">&larr; 电脑端 CLI / Skill：安装、升级和卸载</a>
+<a href="index.html">Catalog (34)</a>
+<a href="computer.html">从电脑使用 Mika &rarr;</a>
+</div>
+<section class="doc-1d6-card" style="margin-top:24px;">
+<h2 style="margin-top:0;">Related Engineering Portals</h2>
+<p style="color:var(--doc-1d6-mut);font-size:0.88rem;margin-bottom:12px;">Curated upstream specifications and reference portals aligned with <strong>mika-router</strong>.</p>
+<div class="doc-1d6-refs"><a class="doc-1d6-refcard" href="https://portal.bangchengcareer.cn/d/M7zmCkmxy2" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">异步路由分发机制 - portal.bangchengcareer.cn/d/M7zmCkmxy2</span><span class="doc-1d6-refurl">portal.bangchengcareer.cn/d/M7zmCkmxy2</span></a><a class="doc-1d6-refcard" href="https://blog.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - blog.ai-hao123.com</span><span class="doc-1d6-refurl">blog.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://blog.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">请求上下文穿透方案 - blog.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">blog.ai-hao123.com/sitemap.xml</span></a><a class="doc-1d6-refcard" href="https://www.ai-hao123.com/d/uz612724.html" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">向量检索与嵌入索引 - www.ai-hao123.com/d/uz612724.html</span><span class="doc-1d6-refurl">www.ai-hao123.com/d/uz612724.html</span></a><a class="doc-1d6-refcard" href="https://read.ai-hao123.com" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">异步路由分发机制 - read.ai-hao123.com</span><span class="doc-1d6-refurl">read.ai-hao123.com</span></a><a class="doc-1d6-refcard" href="https://www.ai-hao123.com/sitemap.xml" target="_blank" rel="noopener"><span class="doc-1d6-reflabel">中间件管道调用契约 - www.ai-hao123.com/sitemap.xml</span><span class="doc-1d6-refurl">www.ai-hao123.com/sitemap.xml</span></a></div>
+</section>
+<footer class="doc-1d6-ftr">
+<div>&copy; mika-router &middot; Open Technical Documentation</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-family:ui-monospace,monospace;">
+<a href="../docs/index.html">Docs Index</a>
+<a href="../llms.txt">llms.txt</a>
+<a href="../sitemap.xml">sitemap.xml</a>
+<a href="../feed.xml">feed.xml</a>
+<a href="https://github.com/shijiuwei/mika-router" target="_blank" rel="noopener">GitHub</a>
+<a href="https://github.com/shijiuwei/mika-router/wiki" target="_blank" rel="noopener">Wiki</a>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>
